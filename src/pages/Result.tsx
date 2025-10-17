@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { ExternalLink, Home, Sparkles } from 'lucide-react';
 import { onsenResults } from '@/data/onsenTypes';
 import { OnsenType } from '@/types/onsen';
 
@@ -22,68 +23,92 @@ const Result = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="max-w-3xl mx-auto">
-          <Card className="p-8 md:p-12">
-            <div className="text-center mb-8">
-              <p className="text-lg text-muted-foreground mb-2">
-                Tu tipo de onsen ideal es:
-              </p>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                {result.title}
-              </h1>
-            </div>
-
-            <div className="mb-8">
-              <p className="text-lg text-foreground leading-relaxed">
-                {result.description}
-              </p>
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
-                Destinos recomendados:
-              </h2>
-              <ul className="space-y-2">
-                {result.destinations.map((destination, index) => (
-                  <li 
-                    key={index}
-                    className="text-lg text-foreground pl-4 border-l-4 border-primary"
-                  >
-                    {destination}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-t border-border pt-8 text-center">
-              <p className="text-lg text-foreground mb-6">
-                ¿Quieres visitar un onsen con este tipo de agua?
-              </p>
-              <Button 
-                size="lg"
-                className="w-full md:w-auto px-8"
-                asChild
-              >
-                <a 
-                  href="https://japontoursenespanol.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Consulta tu viaje en JaponToursEnEspanol.com
-                </a>
-              </Button>
-              
-              <div className="mt-6">
-                <Button 
-                  variant="outline"
-                  onClick={() => navigate('/')}
-                >
-                  Volver al inicio
-                </Button>
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-12 md:py-20">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* Result Card */}
+          <Card className="shadow-large border-border/50 animate-fade-in overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 p-8 md:p-12 text-center border-b">
+              <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 mb-6 animate-scale-in">
+                <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-primary" />
               </div>
+              <CardTitle className="text-2xl md:text-3xl mb-4 text-foreground">
+                Tu tipo de onsen ideal es:
+              </CardTitle>
+              <CardDescription className="text-3xl md:text-5xl font-bold text-primary drop-shadow-sm">
+                {result.title}
+              </CardDescription>
             </div>
+
+            <CardContent className="p-8 md:p-12 space-y-8">
+              {/* Description Section */}
+              <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                <h3 className="text-2xl font-semibold text-foreground flex items-center gap-2">
+                  Descripción
+                </h3>
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                  {result.description}
+                </p>
+              </div>
+
+              {/* Destinations Section */}
+              <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <h3 className="text-2xl font-semibold text-foreground">
+                  Destinos recomendados
+                </h3>
+                <div className="grid gap-3">
+                  {result.destinations.map((destination, index) => (
+                    <div 
+                      key={index} 
+                      className="flex items-start gap-3 p-4 rounded-lg bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-smooth"
+                    >
+                      <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-2" />
+                      <span className="text-base md:text-lg text-foreground">
+                        {destination}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Section */}
+              <div className="glass-card p-8 md:p-10 space-y-6 shadow-medium animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <div className="text-center space-y-2">
+                  <p className="text-xl md:text-2xl font-semibold text-foreground">
+                    ¿Quieres visitar un onsen con este tipo de agua?
+                  </p>
+                  <p className="text-base text-muted-foreground">
+                    Descubre experiencias únicas en Japón
+                  </p>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    className="flex-1 h-14 text-base md:text-lg transition-smooth hover:scale-105 shadow-medium bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                    size="lg"
+                    asChild
+                  >
+                    <a 
+                      href="https://japontoursenespanol.com/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-5 w-5" />
+                      Consulta tu viaje
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="flex-1 h-14 text-base md:text-lg transition-smooth hover:scale-105"
+                    size="lg"
+                    onClick={() => navigate('/')}
+                  >
+                    <Home className="mr-2 h-5 w-5" />
+                    Volver al inicio
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
           </Card>
         </div>
       </div>
