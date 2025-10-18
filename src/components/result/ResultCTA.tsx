@@ -24,8 +24,9 @@ export const ResultCTA = ({ onsenType }: ResultCTAProps) => {
           </div>
         </div>
         <Button 
-          className="w-full h-14 text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+          className="w-full py-4 px-6 text-base md:text-lg font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
           asChild
+          size="lg"
         >
           <a 
             href={EXTERNAL_LINKS.JAPAN_TOURS}
