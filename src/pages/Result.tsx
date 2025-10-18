@@ -23,19 +23,19 @@ const Result = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-12 md:py-20">
+    <div className="min-h-screen bg-background py-12 md:py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Result Card */}
-          <Card className="shadow-large border-border/50 animate-fade-in overflow-hidden">
-            <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 p-8 md:p-12 text-center border-b">
-              <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 mb-6 animate-scale-in">
+          <Card className="shadow-2xl border border-white/20 animate-fade-in overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 transition-all duration-300">
+            <div className="backdrop-blur-md bg-white/50 dark:bg-gray-800/50 p-8 md:p-12 text-center border-b border-white/20">
+              <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full backdrop-blur-sm bg-primary/20 mb-6 animate-scale-in">
                 <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-primary" />
               </div>
               <CardTitle className="text-2xl md:text-3xl mb-4 text-foreground">
                 Tu tipo de onsen ideal es:
               </CardTitle>
-              <CardDescription className="text-3xl md:text-5xl font-bold text-primary drop-shadow-sm">
+              <CardDescription className="text-3xl md:text-5xl font-bold text-primary">
                 {result.title}
               </CardDescription>
             </div>
@@ -60,7 +60,7 @@ const Result = () => {
                   {result.destinations.map((destination, index) => (
                     <div 
                       key={index} 
-                      className="flex items-start gap-3 p-4 rounded-lg bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-smooth"
+                      className="flex items-start gap-3 p-4 rounded-lg backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 border border-transparent hover:bg-white/70 dark:hover:bg-gray-800/70 hover:border-primary/30 hover:scale-[1.01] transition-all duration-200"
                     >
                       <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-2" />
                       <span className="text-base md:text-lg text-foreground">
@@ -72,7 +72,7 @@ const Result = () => {
               </div>
 
               {/* CTA Section */}
-              <div className="glass-card p-8 md:p-10 space-y-6 shadow-medium animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="backdrop-blur-md bg-white/60 dark:bg-gray-800/60 border border-white/30 rounded-2xl p-8 md:p-10 space-y-6 shadow-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
                 <div className="text-center space-y-2">
                   <p className="text-xl md:text-2xl font-semibold text-foreground">
                     ¿Quieres visitar un onsen con este tipo de agua?
@@ -84,7 +84,7 @@ const Result = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
-                    className="flex-1 h-14 text-base md:text-lg transition-smooth hover:scale-105 shadow-medium bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                    className="flex-1 h-14 text-base md:text-lg transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                     size="lg"
                     asChild
                   >
@@ -99,7 +99,7 @@ const Result = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="flex-1 h-14 text-base md:text-lg transition-smooth hover:scale-105"
+                    className="flex-1 h-14 text-base md:text-lg transition-all duration-200 hover:scale-105 backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 border-2"
                     size="lg"
                     onClick={() => navigate('/')}
                   >
