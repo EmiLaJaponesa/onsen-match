@@ -238,8 +238,18 @@ const Result = () => {
             </div>
 
             <CardContent className="p-8 md:p-12 space-y-10">
+              {/* Description Section - Enhanced readability */}
+              <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
+                  Descripción
+                </h3>
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" style={{ lineHeight: '1.8' }}>
+                  {result.description}
+                </p>
+              </div>
+
               {/* Características Section */}
-              <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="animate-fade-in" style={{ animationDelay: '0.15s' }}>
                 <InfoSection 
                   icon={<Beaker className="w-6 h-6" />}
                   title="Características"
@@ -248,7 +258,7 @@ const Result = () => {
               </div>
 
               {/* Efectos Section */}
-              <div className="animate-fade-in" style={{ animationDelay: '0.15s' }}>
+              <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 <InfoSection 
                   icon={<Heart className="w-6 h-6" />}
                   title="Efectos"
@@ -257,7 +267,7 @@ const Result = () => {
               </div>
 
               {/* Ideal para Section */}
-              <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="animate-fade-in" style={{ animationDelay: '0.25s' }}>
                 <InfoSection 
                   icon={<User className="w-6 h-6" />}
                   title="Ideal para"
@@ -266,22 +276,12 @@ const Result = () => {
               </div>
 
               {/* Experiencia Section with gradient background */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 animate-fade-in" style={{ animationDelay: '0.25s' }}>
+              <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 animate-fade-in" style={{ animationDelay: '0.3s' }}>
                 <InfoSection 
                   icon={<Sparkles className="w-6 h-6" />}
                   title="Experiencia"
                   content={result.experience}
                 />
-              </div>
-
-              {/* Description Section - Enhanced readability */}
-              <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Descripción
-                </h3>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" style={{ lineHeight: '1.8' }}>
-                  {result.description}
-                </p>
               </div>
 
               {/* Destinations Section */}
