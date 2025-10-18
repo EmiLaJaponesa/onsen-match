@@ -16,9 +16,9 @@ export const DestinationCard = ({ name, kanji, location, description }: Destinat
             <h4 className="text-lg md:text-xl font-semibold text-foreground">
               {name}
             </h4>
-            <span className="text-base text-muted-foreground">
-              ({kanji})
-            </span>
+          <span className="text-base text-muted-foreground">
+            {kanji}
+          </span>
           </div>
           <div className="flex items-center gap-1.5 text-sm text-primary font-medium">
             <MapPin className="w-4 h-4" />
