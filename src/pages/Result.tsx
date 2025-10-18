@@ -91,7 +91,7 @@ const Result = () => {
 
             <div className="backdrop-blur-md bg-white/50 dark:bg-gray-800/50 p-8 md:p-12 text-center border-b border-white/20">
               <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full backdrop-blur-sm bg-primary/20 mb-6 animate-scale-in">
-                <Lightbulb className="w-10 h-10 md:w-12 md:h-12 text-primary" />
+                <Sparkles className="w-10 h-10 md:w-12 md:h-12 text-primary" />
               </div>
               <CardTitle className="text-2xl md:text-3xl mb-4 text-foreground">
                 Tu tipo de onsen ideal es:
