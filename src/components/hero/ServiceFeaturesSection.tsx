@@ -14,8 +14,8 @@ export const ServiceFeaturesSection = () => {
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">¿Por qué ir a un onsen en Japón?</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Un onsen (aguas termales en japonés) es más que un baño, es un ritual de bienestar, conexión con la
-            naturaleza y parte esencial de la cultura japonesa
+            Un onsen (aguas termales en japonés) es mucho más que un baño para limpiarse: es una tradición milenaria de
+            relajación, sanación y conexión con la naturaleza.
           </p>
         </div>
 
