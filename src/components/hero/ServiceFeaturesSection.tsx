@@ -12,10 +12,10 @@ export const ServiceFeaturesSection = () => {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">¿Cómo funciona?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">¿Por qué ir a un onsen en Japón?</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Onsen Match es el "sommelier digital de los onsen japoneses" que te ofrece la mejor opción a través de los
-            siguientes pasos:
+            Un onsen (aguas termales en japonés) es más que un baño, es un ritual de bienestar, conexión con la
+            naturaleza y parte esencial de la cultura japonesa
           </p>
         </div>
 
