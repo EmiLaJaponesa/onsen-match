@@ -21,15 +21,6 @@ const Index = () => {
         <div className="container mx-auto px-4 py-20">
           <main className="max-w-5xl mx-auto text-center space-y-12">
             
-            {/* Icon Badge */}
-            <div className="inline-flex items-center justify-center animate-fade-in">
-              <div className="backdrop-blur-md bg-primary/20 border border-primary/30 rounded-full px-6 py-3 shadow-lg">
-                <div className="flex items-center gap-2 text-white">
-                  <Sparkles className="w-5 h-5" />
-                  <span className="text-sm font-medium tracking-wide">Modern Wellness Experience</span>
-                </div>
-              </div>
-            </div>
 
             {/* Main Title */}
             <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '0.1s' }}>
