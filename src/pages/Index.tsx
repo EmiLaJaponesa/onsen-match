@@ -36,21 +36,6 @@ const Index = () => {
                 Un análisis personalizado para conectar con el agua termal perfecta para ti
               </p>
 
-              {/* Glassmorphism Card */}
-              <div 
-                className="backdrop-blur-2xl bg-white/10 dark:bg-white/5 border border-white/20 p-10 md:p-14 mb-12 max-w-3xl mx-auto rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] animate-fade-in transition-all duration-500 hover:bg-white/15 hover:border-white/30 hover:shadow-[0_25px_80px_-10px_rgba(0,0,0,0.6)]" 
-                style={{ animationDelay: '0.3s' }}
-              >
-                <div className="space-y-6 text-white">
-                  <p className="text-xl md:text-2xl leading-relaxed font-light">
-                    En Japón, cada onsen tiene propiedades únicas que benefician tu cuerpo, piel y mente de diferentes formas.
-                  </p>
-                  <p className="text-lg md:text-xl leading-relaxed font-light opacity-90">
-                    Responde unas breves preguntas y descubre cuál es tu tipo de agua ideal.
-                  </p>
-                </div>
-              </div>
-
               {/* CTA Button */}
               <Button 
                 size="lg" 
