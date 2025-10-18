@@ -348,7 +348,7 @@ const Result = () => {
                 <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
                   <div className="text-center space-y-3">
                     <p className="text-2xl md:text-3xl font-bold text-foreground">
-                      ¿Quieres visitar un onsen de {result.title}?
+                      ¿Quieres visitar un onsen de {result.title.split(' – ')[0]}?
                     </p>
                     <p className="text-lg text-muted-foreground">
                       Tours personalizados con expertos locales
