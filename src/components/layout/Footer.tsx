@@ -13,16 +13,6 @@ export const Footer = () => {
             >
               Desarrollado con ♥ en Japón por EMI JIN. Muchas gracias Platzi & Lovable.
             </a>
-            <a 
-              href="#" 
-              className="hover:text-foreground transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                // Future: navigate to /privacy
-              }}
-            >
-              Privacidad
-            </a>
           </div>
         </div>
       </div>
