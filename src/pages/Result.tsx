@@ -66,26 +66,6 @@ const Result = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90" />
-                <div className="absolute top-4 right-4">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={handleShare}
-                    className="backdrop-blur-md bg-white/80 hover:bg-white/90 dark:bg-gray-800/80 dark:hover:bg-gray-800/90 shadow-lg"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-4 h-4 mr-2" />
-                        Copiado
-                      </>
-                    ) : (
-                      <>
-                        <Share2 className="w-4 h-4 mr-2" />
-                        ¡Comparte tu resultado en tus redes sociales!
-                      </>
-                    )}
-                  </Button>
-                </div>
               </div>
             )}
 
@@ -205,6 +185,28 @@ const Result = () => {
                     >
                       <span className="whitespace-normal">¡Sí, quiero viajar a Japón!</span>
                     </a>
+                  </Button>
+                </div>
+                
+                {/* Share Button */}
+                <div className="text-center pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleShare}
+                    className="backdrop-blur-md"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 mr-2" />
+                        Copiado
+                      </>
+                    ) : (
+                      <>
+                        <Share2 className="w-4 h-4 mr-2" />
+                        ¡Comparte tu resultado en tus redes sociales!
+                      </>
+                    )}
                   </Button>
                 </div>
                 
