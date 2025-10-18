@@ -35,7 +35,7 @@ export const serviceFeatures: ServiceFeature[] = [
 ];
 
 export const onsenStats: OnsenStat[] = [
-  { number: "3,000+", label: "Onsen en Japón" },
-  { number: "10", label: "Tipos de agua mineral" },
-  { number: "47", label: "Prefecturas con onsen" },
+  { number: "1", label: "Responde un breve cuestionario" },
+  { number: "2", label: "La IA analiza tus respuestas" },
+  { number: "3", label: "Descubre tu próximo destino de onsen en Japón" },
 ];
