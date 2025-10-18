@@ -38,7 +38,7 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
     
-    --gradient-hero: linear-gradient(135deg, hsl(175 45% 42% / 0.9), hsl(175 55% 25% / 0.95));
+    --gradient-hero: linear-gradient(135deg, hsl(175 45% 42% / 0.3), hsl(175 55% 25% / 0.4));
     --shadow-soft: 0 4px 20px -2px hsl(175 45% 42% / 0.15);
     --shadow-medium: 0 8px 30px -4px hsl(175 45% 42% / 0.2);
     --shadow-large: 0 20px 60px -10px hsl(175 45% 42% / 0.25);
@@ -90,7 +90,7 @@ All colors MUST be HSL.
     --input: 175 10% 25%;
     --ring: 175 40% 55%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(175 40% 25% / 0.9), hsl(175 50% 15% / 0.95));
+    --gradient-hero: linear-gradient(135deg, hsl(175 40% 25% / 0.3), hsl(175 50% 15% / 0.4));
     --shadow-soft: 0 4px 20px -2px hsl(175 40% 20% / 0.3);
     --shadow-medium: 0 8px 30px -4px hsl(175 40% 20% / 0.4);
     --shadow-large: 0 20px 60px -10px hsl(175 40% 20% / 0.5);
