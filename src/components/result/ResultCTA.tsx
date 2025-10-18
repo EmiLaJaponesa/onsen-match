@@ -34,7 +34,7 @@ export const ResultCTA = ({ onsenType }: ResultCTAProps) => {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2"
           >
-            ¡Quiero viajar a Japón!
+            Consulta gratis
             <ExternalLink className="w-5 h-5" />
           </a>
         </Button>
