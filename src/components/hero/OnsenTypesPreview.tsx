@@ -1,19 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { onsenImages } from '@/utils/onsenImages';
-import { OnsenType } from '@/types/onsen';
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { onsenImages } from "@/utils/onsenImages";
+import { OnsenType } from "@/types/onsen";
 
 const onsenTypeNames: Record<OnsenType, { title: string; subtitle: string }> = {
-  chloride: { title: 'Cloruro', subtitle: 'Hidratante y cálido' },
-  bicarbonate: { title: 'Bicarbonato', subtitle: 'Suaviza la piel' },
-  sulfur: { title: 'Azufre', subtitle: 'Purificante' },
-  carbonated: { title: 'Carbonatado', subtitle: 'Revitalizante' },
-  sulfate: { title: 'Sulfato', subtitle: 'Relajante muscular' },
-  simple: { title: 'Simple', subtitle: 'Suave y delicado' },
-  ferruginous: { title: 'Ferruginoso', subtitle: 'Rico en hierro' },
-  acidic: { title: 'Ácido', subtitle: 'Estimulante' },
-  radon: { title: 'Radón', subtitle: 'Terapéutico' },
-  alkaline: { title: 'Alcalino', subtitle: 'Rejuvenecedor' },
+  chloride: { title: "Cloruro", subtitle: "Hidratante y cálido" },
+  bicarbonate: { title: "Bicarbonato", subtitle: "Suaviza la piel" },
+  sulfur: { title: "Azufre", subtitle: "Purificante" },
+  carbonated: { title: "Carbonatado", subtitle: "Revitalizante" },
+  sulfate: { title: "Sulfato", subtitle: "Relajante muscular" },
+  simple: { title: "Simple", subtitle: "Suave y delicado" },
+  ferruginous: { title: "Ferruginoso", subtitle: "Rico en hierro" },
+  acidic: { title: "Ácido", subtitle: "Estimulante" },
+  radon: { title: "Radón", subtitle: "Terapéutico" },
+  alkaline: { title: "Alcalino", subtitle: "Rejuvenecedor" },
 };
 
 export const OnsenTypesPreview = () => {
@@ -23,9 +23,7 @@ export const OnsenTypesPreview = () => {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            10 tipos únicos de onsen
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">10 tipos únicos de onsen</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Cada tipo de agua mineral ofrece experiencias y beneficios únicos para tu bienestar
           </p>
@@ -36,7 +34,7 @@ export const OnsenTypesPreview = () => {
             <div
               key={type}
               className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer animate-fade-in hover:scale-105 transition-transform duration-300 will-change-transform will-change-opacity"
-              style={{ animationDelay: index < 3 ? `${index * 100}ms` : '0ms' }}
+              style={{ animationDelay: index < 3 ? `${index * 100}ms` : "0ms" }}
             >
               <img
                 src={onsenImages[type]}
@@ -58,13 +56,13 @@ export const OnsenTypesPreview = () => {
           ))}
         </div>
 
-        <div className="text-center animate-fade-in" style={{ animationDelay: '500ms' }}>
+        <div className="text-center animate-fade-in" style={{ animationDelay: "500ms" }}>
           <Button
-            onClick={() => navigate('/quiz')}
+            onClick={() => navigate("/quiz")}
             size="lg"
             className="text-base md:text-lg px-8 py-6 hover:scale-105 transition-transform duration-200"
           >
-            Descubre tu tipo ideal
+            ¿Cuál sería tu tipo de onsen ideal?
           </Button>
         </div>
       </div>
