@@ -23,11 +23,23 @@ export interface QuestionOption {
   weights: Partial<Record<OnsenType, number>>;
 }
 
+export interface OnsenDestination {
+  name: string;
+  kanji: string;
+  location: string;
+  description: string;
+}
+
 export interface OnsenResult {
   type: OnsenType;
   title: string;
+  emoji: string;
+  characteristics: string;
+  effects: string;
+  idealFor: string;
+  experience: string;
   description: string;
-  destinations: string[];
+  destinations: OnsenDestination[];
 }
 
 export type QuizAnswers = Record<number, string>;
