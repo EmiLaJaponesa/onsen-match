@@ -28,7 +28,7 @@ const Index = () => {
             <main className="max-w-5xl mx-auto text-center space-y-12">
               {/* Main Title */}
               <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '0.1s' }}>
-                Descubre tu onsen ideal
+                Descubre tu Onsen ideal en Japón
               </h1>
               
               {/* Subtitle */}
