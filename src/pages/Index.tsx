@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import onsenHero from '@/assets/onsen-hero.jpg';
 
 const Index = () => {
@@ -7,47 +8,62 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Hero Background with Minimal Overlay */}
+      {/* Hero Background with Enhanced Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${onsenHero})` }}
       >
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-20">
-          <main className="max-w-4xl mx-auto text-center">
-            {/* Main Title with Animation */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-2xl">
-              Descubre el tipo de onsen perfecto para ti
+          <main className="max-w-5xl mx-auto text-center space-y-12">
+            
+            {/* Icon Badge */}
+            <div className="inline-flex items-center justify-center animate-fade-in">
+              <div className="backdrop-blur-md bg-primary/20 border border-primary/30 rounded-full px-6 py-3 shadow-lg">
+                <div className="flex items-center gap-2 text-white">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="text-sm font-medium tracking-wide">Modern Wellness Experience</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '0.1s' }}>
+              Descubre tu onsen ideal
             </h1>
             
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-white/95 mb-12 animate-fade-in drop-shadow-lg font-light" style={{ animationDelay: '0.1s' }}>
-              Tu cuerpo, tu piel y tu mente te dirán cuál necesitas.
+            <p className="text-2xl md:text-3xl text-white/95 mb-16 animate-fade-in font-light leading-relaxed max-w-3xl mx-auto" style={{ animationDelay: '0.2s' }}>
+              Un análisis personalizado para conectar con el agua termal perfecta para ti
             </p>
 
-            {/* Glassmorphism Card with Info */}
-            <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border border-white/30 p-8 md:p-10 mb-10 text-left max-w-2xl mx-auto rounded-2xl shadow-2xl animate-fade-in transition-all duration-300 hover:shadow-[0_12px_40px_0_rgba(0,0,0,0.3)]" style={{ animationDelay: '0.2s' }}>
-              <p className="text-lg md:text-xl text-gray-900 dark:text-white leading-relaxed">
-                En Japón, cada onsen (agua termal natural) tiene una energía distinta: 
-                algunas relajan el cuerpo, otras mejoran la piel o ayudan a dormir mejor.
-              </p>
-              <p className="text-lg md:text-xl text-gray-900 dark:text-white leading-relaxed mt-4">
-                Responde unas breves preguntas y descubre cuál sería tu tipo de agua ideal.
-              </p>
+            {/* Glassmorphism Card */}
+            <div 
+              className="backdrop-blur-2xl bg-white/10 dark:bg-white/5 border border-white/20 p-10 md:p-14 mb-12 max-w-3xl mx-auto rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] animate-fade-in transition-all duration-500 hover:bg-white/15 hover:border-white/30 hover:shadow-[0_25px_80px_-10px_rgba(0,0,0,0.6)]" 
+              style={{ animationDelay: '0.3s' }}
+            >
+              <div className="space-y-6 text-white">
+                <p className="text-xl md:text-2xl leading-relaxed font-light">
+                  En Japón, cada onsen tiene propiedades únicas que benefician tu cuerpo, piel y mente de diferentes formas.
+                </p>
+                <p className="text-lg md:text-xl leading-relaxed font-light opacity-90">
+                  Responde unas breves preguntas y descubre cuál es tu tipo de agua ideal.
+                </p>
+              </div>
             </div>
 
             {/* CTA Button */}
             <Button 
               size="lg" 
-              className="text-lg md:text-xl px-12 py-8 hover:scale-105 transition-all duration-300 animate-fade-in bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold shadow-xl hover:shadow-2xl"
-              style={{ animationDelay: '0.3s' }}
+              className="text-xl md:text-2xl px-16 py-10 h-auto hover:scale-105 transition-all duration-300 animate-fade-in bg-primary hover:bg-primary/90 text-white font-semibold shadow-[0_20px_60px_-10px_rgba(0,212,255,0.5)] hover:shadow-[0_25px_80px_-10px_rgba(0,212,255,0.7)] rounded-2xl"
+              style={{ animationDelay: '0.4s' }}
               onClick={() => navigate('/quiz')}
             >
-              Comenzar el test
+              Comenzar ahora
             </Button>
           </main>
         </div>

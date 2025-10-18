@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Noto Sans JP', 'sans-serif'],
-        serif: ['Shippori Mincho', 'Noto Serif JP', 'serif'],
-        body: ['Plus Jakarta Sans', 'Noto Sans JP', 'sans-serif'],
-        heading: ['Shippori Mincho', 'Noto Serif JP', 'serif'],
+        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+        serif: ['Noto Serif JP', 'Inter', 'serif'],
+        body: ['Inter', 'Noto Sans JP', 'sans-serif'],
+        heading: ['Noto Serif JP', 'Inter', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
