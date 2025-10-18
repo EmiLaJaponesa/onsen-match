@@ -26,3 +26,13 @@ export const OnsenStatsSection = () => {
     </section>
   );
 };
+
+<div className="text-center animate-fade-in" style={{ animationDelay: "500ms" }}>
+  <Button
+    onClick={() => navigate("/quiz")}
+    size="lg"
+    className="text-base md:text-lg px-8 py-6 hover:scale-105 transition-transform duration-200"
+  >
+    ¿Cuál sería tu tipo de onsen ideal?
+  </Button>
+</div>;
