@@ -1,64 +1,88 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
 import onsenHero from '@/assets/onsen-hero.jpg';
+import { ServiceFeaturesSection } from '@/components/hero/ServiceFeaturesSection';
+import { OnsenStatsSection } from '@/components/hero/OnsenStatsSection';
+import { OnsenTypesPreview } from '@/components/hero/OnsenTypesPreview';
+import { FAQSection } from '@/components/result/FAQSection';
+import { FinalCTASection } from '@/components/hero/FinalCTASection';
 
 const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Hero Background with Enhanced Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${onsenHero})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-      </div>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        {/* Hero Background with Enhanced Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${onsenHero})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+        </div>
 
-      {/* Content */}
-      <div className="relative z-10 min-h-screen flex items-center">
-        <div className="container mx-auto px-4 py-20">
-          <main className="max-w-5xl mx-auto text-center space-y-12">
-            
+        {/* Hero Content */}
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="container mx-auto px-4 py-20">
+            <main className="max-w-5xl mx-auto text-center space-y-12">
+              {/* Main Title */}
+              <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '0.1s' }}>
+                Descubre tu onsen ideal
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-2xl md:text-3xl text-white/95 mb-16 animate-fade-in font-light leading-relaxed max-w-3xl mx-auto" style={{ animationDelay: '0.2s' }}>
+                Un análisis personalizado para conectar con el agua termal perfecta para ti
+              </p>
 
-            {/* Main Title */}
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '0.1s' }}>
-              Descubre tu onsen ideal
-            </h1>
-            
-            {/* Subtitle */}
-            <p className="text-2xl md:text-3xl text-white/95 mb-16 animate-fade-in font-light leading-relaxed max-w-3xl mx-auto" style={{ animationDelay: '0.2s' }}>
-              Un análisis personalizado para conectar con el agua termal perfecta para ti
-            </p>
-
-            {/* Glassmorphism Card */}
-            <div 
-              className="backdrop-blur-2xl bg-white/10 dark:bg-white/5 border border-white/20 p-10 md:p-14 mb-12 max-w-3xl mx-auto rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] animate-fade-in transition-all duration-500 hover:bg-white/15 hover:border-white/30 hover:shadow-[0_25px_80px_-10px_rgba(0,0,0,0.6)]" 
-              style={{ animationDelay: '0.3s' }}
-            >
-              <div className="space-y-6 text-white">
-                <p className="text-xl md:text-2xl leading-relaxed font-light">
-                  En Japón, cada onsen tiene propiedades únicas que benefician tu cuerpo, piel y mente de diferentes formas.
-                </p>
-                <p className="text-lg md:text-xl leading-relaxed font-light opacity-90">
-                  Responde unas breves preguntas y descubre cuál es tu tipo de agua ideal.
-                </p>
+              {/* Glassmorphism Card */}
+              <div 
+                className="backdrop-blur-2xl bg-white/10 dark:bg-white/5 border border-white/20 p-10 md:p-14 mb-12 max-w-3xl mx-auto rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] animate-fade-in transition-all duration-500 hover:bg-white/15 hover:border-white/30 hover:shadow-[0_25px_80px_-10px_rgba(0,0,0,0.6)]" 
+                style={{ animationDelay: '0.3s' }}
+              >
+                <div className="space-y-6 text-white">
+                  <p className="text-xl md:text-2xl leading-relaxed font-light">
+                    En Japón, cada onsen tiene propiedades únicas que benefician tu cuerpo, piel y mente de diferentes formas.
+                  </p>
+                  <p className="text-lg md:text-xl leading-relaxed font-light opacity-90">
+                    Responde unas breves preguntas y descubre cuál es tu tipo de agua ideal.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* CTA Button */}
-            <Button 
-              size="lg" 
-              className="text-xl md:text-2xl px-16 py-10 h-auto hover:scale-105 transition-all duration-300 animate-fade-in bg-primary hover:bg-primary/90 text-white font-semibold shadow-[0_20px_60px_-10px_rgba(0,212,255,0.5)] hover:shadow-[0_25px_80px_-10px_rgba(0,212,255,0.7)] rounded-2xl"
-              style={{ animationDelay: '0.4s' }}
-              onClick={() => navigate('/quiz')}
-            >
-              Comenzar ahora
-            </Button>
-          </main>
+              {/* CTA Button */}
+              <Button 
+                size="lg" 
+                className="text-xl md:text-2xl px-16 py-10 h-auto hover:scale-105 transition-all duration-300 animate-fade-in bg-primary hover:bg-primary/90 text-white font-semibold shadow-[0_20px_60px_-10px_rgba(0,212,255,0.5)] hover:shadow-[0_25px_80px_-10px_rgba(0,212,255,0.7)] rounded-2xl"
+                style={{ animationDelay: '0.4s' }}
+                onClick={() => navigate('/quiz')}
+              >
+                Comenzar ahora
+              </Button>
+            </main>
+          </div>
         </div>
       </div>
+
+      {/* Service Features Section */}
+      <ServiceFeaturesSection />
+
+      {/* Onsen Stats Section */}
+      <OnsenStatsSection />
+
+      {/* Onsen Types Preview Section */}
+      <OnsenTypesPreview />
+
+      {/* FAQ Section */}
+      <div className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <FAQSection />
+        </div>
+      </div>
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
     </div>
   );
 };
