@@ -31,18 +31,19 @@ export const OnsenTypesPreview = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6 mb-12 justify-items-center">
           {(Object.keys(onsenTypeNames) as OnsenType[]).map((type, index) => (
             <div
               key={type}
-              className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer animate-fade-in hover:scale-105 transition-transform duration-300"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer animate-fade-in hover:scale-105 transition-transform duration-300 will-change-transform will-change-opacity"
+              style={{ animationDelay: index < 3 ? `${index * 100}ms` : '0ms' }}
             >
               <img
                 src={onsenImages[type]}
                 alt={onsenTypeNames[type].title}
                 className="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-0 flex flex-col items-center justify-end p-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">

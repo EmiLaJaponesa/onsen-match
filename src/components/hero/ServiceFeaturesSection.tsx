@@ -26,8 +26,8 @@ export const ServiceFeaturesSection = () => {
             return (
               <div
                 key={index}
-                className="group relative backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 border border-border rounded-2xl p-8 hover:bg-white/40 dark:hover:bg-gray-800/40 transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group relative bg-white/30 dark:bg-gray-800/30 border border-border rounded-2xl p-8 hover:bg-white/40 dark:hover:bg-gray-800/40 transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in will-change-transform"
+                style={{ animationDelay: index < 3 ? `${index * 100}ms` : '0ms' }}
               >
                 <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                   <Icon className="w-7 h-7" />
