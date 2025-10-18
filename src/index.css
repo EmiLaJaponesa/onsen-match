@@ -195,3 +195,19 @@ All colors MUST be HSL.
     }
   }
 }
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .steam-animation,
+  .onsen-watermark,
+  .cta-button {
+    animation: none !important;
+    opacity: 0.3 !important;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import p5 from 'p5';
 
 interface Particle {
@@ -10,12 +10,14 @@ interface Particle {
   noiseOffset: number;
 }
 
-export const SteamAnimation = () => {
+export const SteamAnimation = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null);
   const p5Instance = useRef<p5 | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !containerRef.current) return;
 
     const sketch = (p: p5) => {
       let particles: Particle[] = [];
@@ -29,8 +31,11 @@ export const SteamAnimation = () => {
         p.frameRate(30);
         p.noStroke();
 
-        // Initialize particles
-        for (let i = 0; i < 60; i++) {
+        // Initialize particles - fewer for better performance
+        const isMobile = canvasWidth < 768;
+        const particleCount = isMobile ? 20 : 30; // Reduced from 60
+        
+        for (let i = 0; i < particleCount; i++) {
           particles.push(createParticle());
         }
       };
@@ -42,19 +47,19 @@ export const SteamAnimation = () => {
         for (let i = particles.length - 1; i >= 0; i--) {
           const particle = particles[i];
 
-          // Update position
+          // Update position - slower rise for more natural effect
           particle.y -= particle.speed;
           
-          // Add natural horizontal movement using Perlin noise
+          // Add natural horizontal movement using Perlin noise - more subtle
           const noiseValue = p.noise(particle.noiseOffset);
-          particle.x += (noiseValue - 0.5) * 2;
+          particle.x += (noiseValue - 0.5) * 1; // Reduced from 2
           particle.noiseOffset += 0.01;
 
-          // Fade out as it rises
-          particle.alpha = p.map(particle.y, canvasHeight, 0, 80, 0);
+          // Fade out as it rises - more subtle fade
+          particle.alpha = p.map(particle.y, canvasHeight, 0, 40, 0); // Reduced from 80
 
-          // Grow slightly as it rises
-          particle.size += 0.05;
+          // Grow slightly as it rises - slower growth
+          particle.size += 0.01; // Reduced from 0.05
 
           // Draw particle
           p.fill(255, 255, 255, particle.alpha);
@@ -66,8 +71,9 @@ export const SteamAnimation = () => {
           }
         }
 
-        // Add new particles periodically
-        if (p.frameCount % 5 === 0 && particles.length < 80) {
+        // Add new particles periodically - less frequently for better performance
+        const maxParticles = canvasWidth < 768 ? 30 : 40; // Reduced from 80
+        if (p.frameCount % 10 === 0 && particles.length < maxParticles) { // Changed from 5
           particles.push(createParticle());
         }
       };
@@ -82,9 +88,9 @@ export const SteamAnimation = () => {
         return {
           x: p.random(canvasWidth),
           y: canvasHeight + p.random(0, 50),
-          size: p.random(10, 30),
-          speed: p.random(0.5, 1.5),
-          alpha: 80,
+          size: p.random(2, 6),        // Reduced from 10-30 for more delicate steam
+          speed: p.random(0.2, 0.6),   // Reduced from 0.5-1.5 for slower rise
+          alpha: p.random(20, 40),     // Reduced from 80 for more natural transparency
           noiseOffset: p.random(1000),
         };
       }
@@ -100,8 +106,10 @@ export const SteamAnimation = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 pointer-events-none"
+      className="steam-animation absolute inset-0 pointer-events-none"
       style={{ zIndex: 5 }}
     />
   );
-};
+});
+
+SteamAnimation.displayName = 'SteamAnimation';

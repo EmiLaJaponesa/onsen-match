@@ -2,9 +2,21 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import onsenHero from '@/assets/onsen-hero.jpg';
 import { SteamAnimation } from '@/components/SteamAnimation';
+import { useState, useEffect } from 'react';
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showSteam, setShowSteam] = useState(true);
+
+  useEffect(() => {
+    // Disable steam on low-performance devices or reduced motion preference
+    const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (isLowPerformance || prefersReducedMotion) {
+      setShowSteam(false);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -16,8 +28,8 @@ const Index = () => {
         <div className="absolute inset-0 hero-gradient" />
       </div>
 
-      {/* Steam Animation */}
-      <SteamAnimation />
+      {/* Steam Animation - Conditionally rendered for performance */}
+      {showSteam && <SteamAnimation />}
 
       {/* Japanese Watermark */}
       <div className="onsen-watermark">温泉</div>
