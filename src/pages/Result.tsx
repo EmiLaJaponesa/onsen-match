@@ -284,43 +284,8 @@ const Result = () => {
                 </p>
               </div>
 
-              {/* CTA Section - Moved here for better conversion */}
-              <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.35s' }}>
-                <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
-                  <div className="text-center space-y-3">
-                    <p className="text-2xl md:text-3xl font-bold text-foreground">
-                      ¿Quieres visitar un onsen de {result.title}?
-                    </p>
-                    <p className="text-lg text-muted-foreground">
-                      Tours personalizados con expertos locales
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-3 pt-2">
-                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Guías en español</span>
-                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Experiencias auténticas</span>
-                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Sin complicaciones</span>
-                    </div>
-                  </div>
-                  
-                  {/* Main CTA Button - Large and prominent */}
-                  <Button 
-                    className="w-full min-h-[48px] md:min-h-[80px] text-lg md:text-2xl font-bold transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-secondary/50 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl py-4 will-change-transform"
-                    size="lg"
-                    asChild
-                  >
-                    <a 
-                      href="https://japontoursenespanol.com/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center whitespace-normal text-center"
-                    >
-                      <span className="whitespace-normal">¡Sí, quiero viajar a Japón!</span>
-                    </a>
-                  </Button>
-                </div>
-              </div>
-
               {/* Destinations Section */}
-              <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.35s' }}>
                 <div className="flex items-center gap-3">
                   <MapPin className="w-7 h-7 text-primary" />
                   <h3 className="text-2xl font-semibold text-foreground">
@@ -375,6 +340,41 @@ const Result = () => {
                       description={destination.description}
                     />
                   ))}
+                </div>
+              </div>
+
+              {/* CTA Section */}
+              <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.4s' }}>
+                <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
+                  <div className="text-center space-y-3">
+                    <p className="text-2xl md:text-3xl font-bold text-foreground">
+                      ¿Quieres visitar un onsen de {result.title}?
+                    </p>
+                    <p className="text-lg text-muted-foreground">
+                      Tours personalizados con expertos locales
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-3 pt-2">
+                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Guías en español</span>
+                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Experiencias auténticas</span>
+                      <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">✓ Sin complicaciones</span>
+                    </div>
+                  </div>
+                  
+                  {/* Main CTA Button - Large and prominent */}
+                  <Button 
+                    className="w-full min-h-[48px] md:min-h-[80px] text-lg md:text-2xl font-bold transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-secondary/50 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl py-4 will-change-transform"
+                    size="lg"
+                    asChild
+                  >
+                    <a 
+                      href="https://japontoursenespanol.com/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center whitespace-normal text-center"
+                    >
+                      <span className="whitespace-normal">¡Sí, quiero viajar a Japón!</span>
+                    </a>
+                  </Button>
                 </div>
               </div>
 
