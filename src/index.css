@@ -144,4 +144,54 @@ All colors MUST be HSL.
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+  
+  .cta-button {
+    @apply shadow-[0_0_30px_hsl(28_60%_55%/0.4)] hover:shadow-[0_0_40px_hsl(28_60%_55%/0.6)];
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+  
+  .japanese-decoration {
+    position: relative;
+  }
+  
+  .japanese-decoration::before,
+  .japanese-decoration::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.6), transparent);
+  }
+  
+  .japanese-decoration::before {
+    top: -20px;
+  }
+  
+  .japanese-decoration::after {
+    bottom: -20px;
+  }
+  
+  .onsen-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20rem;
+    font-weight: 700;
+    color: hsl(0 0% 100% / 0.05);
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+  }
+  
+  @keyframes subtle-pulse {
+    0%, 100% { 
+      transform: scale(1); 
+    }
+    50% { 
+      transform: scale(1.02); 
+    }
+  }
 }

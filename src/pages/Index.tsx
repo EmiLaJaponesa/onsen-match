@@ -19,12 +19,15 @@ const Index = () => {
       {/* Steam Animation */}
       <SteamAnimation />
 
+      {/* Japanese Watermark */}
+      <div className="onsen-watermark">温泉</div>
+
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-20">
           <main className="max-w-4xl mx-auto text-center">
-            {/* Main Title with Animation */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg">
+            {/* Main Title with Animation and Japanese Decoration */}
+            <h1 className="japanese-decoration text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg py-8">
               Descubre el tipo de onsen perfecto para ti
             </h1>
             
@@ -47,7 +50,7 @@ const Index = () => {
             {/* CTA Button */}
             <Button 
               size="lg" 
-              className="text-lg md:text-xl px-10 py-7 shadow-large hover:scale-105 transition-smooth animate-fade-in bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold"
+              className="cta-button text-lg md:text-xl px-12 py-8 shadow-large hover:scale-110 transition-smooth animate-fade-in bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold"
               style={{ animationDelay: '0.3s' }}
               onClick={() => navigate('/quiz')}
             >
