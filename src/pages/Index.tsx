@@ -1,22 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import onsenHero from '@/assets/onsen-hero.jpg';
-import { SteamAnimation } from '@/components/SteamAnimation';
-import { useState, useEffect } from 'react';
 
 const Index = () => {
   const navigate = useNavigate();
-  const [showSteam, setShowSteam] = useState(true);
-
-  useEffect(() => {
-    // Disable steam on low-performance devices or reduced motion preference
-    const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (isLowPerformance || prefersReducedMotion) {
-      setShowSteam(false);
-    }
-  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -26,20 +13,16 @@ const Index = () => {
         style={{ backgroundImage: `url(${onsenHero})` }}
       >
         <div className="absolute inset-0 hero-gradient" />
+        {/* CSS Mist Effect */}
+        <div className="mist-effect" />
       </div>
-
-      {/* Steam Animation - Conditionally rendered for performance */}
-      {showSteam && <SteamAnimation />}
-
-      {/* Japanese Watermark */}
-      <div className="onsen-watermark">温泉</div>
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-20">
           <main className="max-w-4xl mx-auto text-center">
-            {/* Main Title with Animation and Japanese Decoration */}
-            <h1 className="japanese-decoration text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg py-8">
+            {/* Main Title with Animation */}
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg">
               Descubre el tipo de onsen perfecto para ti
             </h1>
             
@@ -62,7 +45,7 @@ const Index = () => {
             {/* CTA Button */}
             <Button 
               size="lg" 
-              className="cta-button text-lg md:text-xl px-12 py-8 shadow-large hover:scale-110 transition-smooth animate-fade-in bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold"
+              className="text-lg md:text-xl px-12 py-8 shadow-[0_0_30px_hsl(28_60%_55%/0.4)] hover:shadow-[0_0_40px_hsl(28_60%_55%/0.6)] hover:scale-110 transition-smooth animate-fade-in bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold"
               style={{ animationDelay: '0.3s' }}
               onClick={() => navigate('/quiz')}
             >

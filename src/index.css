@@ -145,62 +145,34 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
   
-  .cta-button {
-    @apply shadow-[0_0_30px_hsl(28_60%_55%/0.4)] hover:shadow-[0_0_40px_hsl(28_60%_55%/0.6)];
-    animation: subtle-pulse 3s ease-in-out infinite;
-  }
-  
-  .japanese-decoration {
-    position: relative;
-  }
-  
-  .japanese-decoration::before,
-  .japanese-decoration::after {
-    content: '';
+  /* CSS-based Mist Effect - Lightweight and Natural */
+  .mist-effect {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.6), transparent);
-  }
-  
-  .japanese-decoration::before {
-    top: -20px;
-  }
-  
-  .japanese-decoration::after {
-    bottom: -20px;
-  }
-  
-  .onsen-watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20rem;
-    font-weight: 700;
-    color: hsl(0 0% 100% / 0.05);
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 800px 400px at 20% 80%, hsl(0 0% 100% / 0.15), transparent),
+      radial-gradient(ellipse 600px 300px at 80% 70%, hsl(175 45% 85% / 0.12), transparent),
+      radial-gradient(ellipse 700px 350px at 50% 90%, hsl(0 0% 100% / 0.1), transparent);
+    animation: mist-float 20s ease-in-out infinite;
     pointer-events: none;
-    user-select: none;
-    z-index: 2;
+    z-index: 1;
   }
   
-  @keyframes subtle-pulse {
+  @keyframes mist-float {
     0%, 100% { 
-      transform: scale(1); 
+      transform: translateY(0) scale(1);
+      opacity: 0.6;
     }
     50% { 
-      transform: scale(1.02); 
+      transform: translateY(-20px) scale(1.05);
+      opacity: 0.8;
     }
   }
 }
 
 /* Accessibility: Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .steam-animation,
-  .onsen-watermark,
-  .cta-button {
+  .mist-effect {
     animation: none !important;
     opacity: 0.3 !important;
   }
