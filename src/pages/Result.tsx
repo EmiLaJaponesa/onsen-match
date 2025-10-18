@@ -81,7 +81,7 @@ const Result = () => {
                     ) : (
                       <>
                         <Share2 className="w-4 h-4 mr-2" />
-                        Compartir
+                        ¡Comparte tu resultado en tus redes sociales!
                       </>
                     )}
                   </Button>
