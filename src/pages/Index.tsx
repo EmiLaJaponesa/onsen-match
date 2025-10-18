@@ -50,7 +50,7 @@ const Index = () => {
                 style={{ animationDelay: "0.4s" }}
                 onClick={() => navigate("/quiz")}
               >
-                Quiero descubrir Onsen ideal para mi
+                Quiero explorar mi Onsen ideal
               </Button>
             </main>
           </div>
