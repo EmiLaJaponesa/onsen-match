@@ -15,16 +15,6 @@ export const Footer = () => {
             </a>
             {' '}© 2025 Onsen Match. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-6">
-            <a 
-              href="https://www.emilajaponesa.com" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
-            >
-              Desarrollado con ♥ por EMI JIN
-            </a>
-          </div>
         </div>
       </div>
     </footer>
