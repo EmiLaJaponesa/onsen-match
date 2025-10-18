@@ -345,7 +345,7 @@ const Result = () => {
 
               {/* CTA Section */}
               <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.4s' }}>
-                <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
+                <div className="backdrop-blur-md bg-gradient-to-br from-white/80 to-gray-50/80 dark:from-gray-800/80 dark:to-gray-900/80 border-2 border-border rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
                   <div className="text-center space-y-3">
                     <p className="text-2xl md:text-3xl font-bold text-foreground">
                       ¿Quieres visitar un onsen de {result.title.split(' – ')[0]}?

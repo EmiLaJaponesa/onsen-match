@@ -32,7 +32,6 @@ export const RelatedTypesSection = ({ currentType }: RelatedTypesSectionProps) =
                 <h4 className="text-lg md:text-xl font-semibold text-foreground">
                   {onsenInfo.title.split(' – ')[0]}
                 </h4>
-                <span className="text-2xl">{onsenInfo.emoji}</span>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
                 {item.reason}
