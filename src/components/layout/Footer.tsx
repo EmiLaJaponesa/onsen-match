@@ -11,7 +11,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              Creado por Emi Jin
+              Desarrollado con ♥ en Japón por EMI JIN. Muchas gracias Platzi & Lovable.
             </a>
             <a 
               href="#" 
