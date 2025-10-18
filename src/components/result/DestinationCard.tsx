@@ -9,7 +9,7 @@ interface DestinationCardProps {
 
 export const DestinationCard = ({ name, kanji, location, description }: DestinationCardProps) => {
   return (
-    <div className="p-6 rounded-xl backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 border border-transparent hover:bg-white/70 dark:hover:bg-gray-800/70 hover:border-primary/30 hover:scale-[1.02] transition-all duration-300 shadow-sm hover:shadow-md">
+    <div className="p-6 rounded-xl backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 border border-transparent hover:bg-white/70 dark:hover:bg-gray-800/70 hover:border-primary/30 hover:scale-105 hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-2xl will-change-transform cursor-pointer h-full">
       <div className="space-y-3">
         <div className="space-y-1">
           <div className="flex items-baseline gap-2 flex-wrap">
