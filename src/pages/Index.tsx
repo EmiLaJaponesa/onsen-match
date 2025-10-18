@@ -31,11 +31,11 @@ const Index = () => {
 
             {/* Glass Card with Info */}
             <div className="glass-card p-8 md:p-10 mb-10 text-left max-w-2xl mx-auto shadow-large animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-white drop-shadow-lg leading-relaxed">
                 En Japón, cada onsen (agua termal natural) tiene una energía distinta: 
                 algunas relajan el cuerpo, otras mejoran la piel o ayudan a dormir mejor.
               </p>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed mt-4">
+              <p className="text-lg md:text-xl text-white drop-shadow-lg leading-relaxed mt-4">
                 Responde unas breves preguntas y descubre cuál sería tu tipo de agua ideal.
               </p>
             </div>
