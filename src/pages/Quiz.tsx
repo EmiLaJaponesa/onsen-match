@@ -9,28 +9,50 @@ import { useNavigate } from 'react-router-dom';
 import { questions } from '@/data/questions';
 import { QuizAnswers } from '@/types/onsen';
 import { calculateOnsenType } from '@/utils/calculateResult';
+import { saveQuizAnswer, saveQuizResult } from '@/utils/saveQuizData';
+import { useToast } from '@/hooks/use-toast';
 
 const Quiz = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [selectedOption, setSelectedOption] = useState<string>('');
+  const [isSaving, setIsSaving] = useState(false);
 
   const question = questions[currentQuestion];
   const isLastQuestion = currentQuestion === questions.length - 1;
 
-  const handleNext = () => {
-    if (!selectedOption) return;
+  const handleNext = async () => {
+    if (!selectedOption || isSaving) return;
+
+    setIsSaving(true);
 
     const newAnswers = { ...answers, [question.id]: selectedOption };
     setAnswers(newAnswers);
 
+    // Save the current answer
+    await saveQuizAnswer(question.id, selectedOption);
+
     if (isLastQuestion) {
+      // Calculate and save final result
       const result = calculateOnsenType(newAnswers);
+      const saveResult = await saveQuizResult(result, newAnswers);
+      
+      if (!saveResult.success) {
+        toast({
+          title: "Advertencia",
+          description: "No se pudo guardar el resultado, pero puedes continuar.",
+          variant: "destructive",
+        });
+      }
+      
+      setIsSaving(false);
       navigate(`/result/${result}`);
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption('');
+      setIsSaving(false);
     }
   };
 
@@ -122,12 +144,12 @@ const Quiz = () => {
                   </Button>
                   <Button
                     onClick={handleNext}
-                    disabled={!selectedOption}
+                    disabled={!selectedOption || isSaving}
                     className="flex-1 h-12 text-base transition-smooth hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                     size="lg"
                   >
-                    {isLastQuestion ? 'Ver resultado' : 'Siguiente'}
-                    {!isLastQuestion && <ArrowRight className="ml-2 h-5 w-5" />}
+                    {isSaving ? 'Guardando...' : (isLastQuestion ? 'Ver resultado' : 'Siguiente')}
+                    {!isSaving && !isLastQuestion && <ArrowRight className="ml-2 h-5 w-5" />}
                   </Button>
                 </div>
               </div>
