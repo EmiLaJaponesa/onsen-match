@@ -174,7 +174,7 @@ const Result = () => {
                 <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
                   <div className="text-center space-y-3">
                     <p className="text-2xl md:text-3xl font-bold text-foreground">
-                      ¿Quieres visitar un onsen con este tipo de agua?
+                      ¿Quieres visitar un onsen de {result.title}?
                     </p>
                     <p className="text-lg text-muted-foreground">
                       Descubre experiencias únicas en Japón
