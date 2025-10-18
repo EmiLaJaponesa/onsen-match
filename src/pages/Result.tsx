@@ -193,7 +193,7 @@ const Result = () => {
                   
                   {/* Main CTA Button - Large and prominent */}
                   <Button 
-                    className="w-full h-16 md:h-20 text-lg md:text-2xl font-bold transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-secondary/50 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl"
+                    className="w-full h-16 md:h-20 text-sm md:text-2xl font-bold transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-secondary/50 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl"
                     size="lg"
                     asChild
                   >
@@ -201,9 +201,10 @@ const Result = () => {
                       href="https://japontoursenespanol.com/" 
                       target="_blank" 
                       rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
                     >
-                      <ExternalLink className="mr-3 h-6 w-6 md:h-7 md:w-7" />
-                      Consulta tu viaje a Japón
+                      <ExternalLink className="h-4 w-4 md:h-7 md:w-7 flex-shrink-0" />
+                      <span>Consulta gratuita con guía en español</span>
                     </a>
                   </Button>
                 </div>
