@@ -1,15 +1,42 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ExternalLink, Home, Sparkles } from 'lucide-react';
+import { ExternalLink, Home, Sparkles, Share2, Check } from 'lucide-react';
 import { onsenResults } from '@/data/onsenTypes';
 import { OnsenType } from '@/types/onsen';
+import { onsenImages } from '@/utils/onsenImages';
+import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 
 const Result = () => {
   const { type } = useParams<{ type: OnsenType }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
   
   const result = type ? onsenResults[type] : null;
+  const resultImage = type ? onsenImages[type] : null;
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast({
+        title: "¡Enlace copiado!",
+        description: "Ahora puedes compartir tu resultado",
+      });
+      
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo copiar el enlace",
+        variant: "destructive",
+      });
+    }
+  };
 
   if (!result) {
     return (
@@ -28,6 +55,38 @@ const Result = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Result Card */}
           <Card className="shadow-2xl border border-white/20 animate-fade-in overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 transition-all duration-300">
+            {/* Hero Image */}
+            {resultImage && (
+              <div className="relative h-64 md:h-80 overflow-hidden">
+                <img 
+                  src={resultImage} 
+                  alt={result.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90" />
+                <div className="absolute top-4 right-4">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={handleShare}
+                    className="backdrop-blur-md bg-white/80 hover:bg-white/90 dark:bg-gray-800/80 dark:hover:bg-gray-800/90 shadow-lg"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 mr-2" />
+                        Copiado
+                      </>
+                    ) : (
+                      <>
+                        <Share2 className="w-4 h-4 mr-2" />
+                        Compartir
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </div>
+            )}
+
             <div className="backdrop-blur-md bg-white/50 dark:bg-gray-800/50 p-8 md:p-12 text-center border-b border-white/20">
               <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full backdrop-blur-sm bg-primary/20 mb-6 animate-scale-in">
                 <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-primary" />
