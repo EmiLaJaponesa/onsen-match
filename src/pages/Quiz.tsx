@@ -45,16 +45,19 @@ const Quiz = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-12 md:py-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5 py-12 md:py-20 relative overflow-hidden">
+      {/* Quiz Mist Effect */}
+      <div className="quiz-mist-effect" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
-          <Card className="shadow-large border-border/50 animate-fade-in">
+          <Card className="shadow-large border-border/50 animate-fade-in relative overflow-hidden backdrop-blur-sm bg-gradient-to-br from-card via-card to-primary/5 dark:from-card dark:via-card dark:to-primary/10">
             <CardHeader className="space-y-4 pb-8">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-3xl md:text-4xl">
                   Pregunta {currentQuestion + 1}
                 </CardTitle>
-                <span className="text-sm font-medium text-muted-foreground bg-muted px-4 py-2 rounded-full">
+                <span className="text-sm font-medium text-primary-foreground bg-gradient-to-r from-primary/80 to-accent/70 px-4 py-2 rounded-full shadow-soft">
                   {currentQuestion + 1} / {questions.length}
                 </span>
               </div>
@@ -75,7 +78,7 @@ const Quiz = () => {
                 {question.options.map((option) => (
                   <div 
                     key={option.id} 
-                    className={`group relative flex items-center space-x-4 p-5 rounded-xl border-2 transition-smooth cursor-pointer
+                    className={`quiz-option group relative flex items-center space-x-4 p-5 rounded-xl border-2 transition-smooth cursor-pointer
                       ${selectedOption === option.id
                         ? 'border-primary bg-primary/5 shadow-soft' 
                         : 'border-border hover:border-primary/50 hover:bg-accent/5'
