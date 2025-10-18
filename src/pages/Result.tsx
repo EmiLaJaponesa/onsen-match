@@ -12,6 +12,7 @@ import { ResultCharacteristics } from '@/components/result/ResultCharacteristics
 import { ResultDestinations } from '@/components/result/ResultDestinations';
 import { ResultCTA } from '@/components/result/ResultCTA';
 import { FAQSection } from '@/components/result/FAQSection';
+import { Footer } from '@/components/layout/Footer';
 import { RelatedTypesSection } from '@/components/result/RelatedTypesSection';
 import { EXTERNAL_LINKS } from '@/constants/app';
 
@@ -94,6 +95,9 @@ const Result = () => {
           </Card>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

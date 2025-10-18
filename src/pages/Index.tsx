@@ -6,6 +6,7 @@ import { OnsenStatsSection } from '@/components/hero/OnsenStatsSection';
 import { OnsenTypesPreview } from '@/components/hero/OnsenTypesPreview';
 import { FAQSection } from '@/components/result/FAQSection';
 import { FinalCTASection } from '@/components/hero/FinalCTASection';
+import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -68,6 +69,9 @@ const Index = () => {
 
       {/* Final CTA Section */}
       <FinalCTASection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
