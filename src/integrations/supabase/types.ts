@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_events: {
+        Row: {
+          browser_language: string | null
+          created_at: string | null
+          device_type: string | null
+          event_data: Json | null
+          event_type: string
+          id: string
+          page_path: string | null
+          referrer: string | null
+          session_id: string
+        }
+        Insert: {
+          browser_language?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          page_path?: string | null
+          referrer?: string | null
+          session_id: string
+        }
+        Update: {
+          browser_language?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          page_path?: string | null
+          referrer?: string | null
+          session_id?: string
+        }
+        Relationships: []
+      }
       quiz_attempts: {
         Row: {
           created_at: string
@@ -41,24 +77,72 @@ export type Database = {
       quiz_results: {
         Row: {
           answers: Json
+          completed_at: string | null
           created_at: string
+          device_type: string | null
           id: string
           onsen_type: string
+          referrer_domain: string | null
           session_id: string
+          time_spent_seconds: number | null
         }
         Insert: {
           answers: Json
+          completed_at?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
           onsen_type: string
+          referrer_domain?: string | null
           session_id: string
+          time_spent_seconds?: number | null
         }
         Update: {
           answers?: Json
+          completed_at?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
           onsen_type?: string
+          referrer_domain?: string | null
           session_id?: string
+          time_spent_seconds?: number | null
+        }
+        Relationships: []
+      }
+      utm_tracking: {
+        Row: {
+          created_at: string | null
+          id: string
+          landing_page: string | null
+          session_id: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          landing_page?: string | null
+          session_id: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          landing_page?: string | null
+          session_id?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }

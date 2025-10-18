@@ -1,6 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { QuizAnswers, OnsenType } from "@/types/onsen";
 import { getSessionId } from "./sessionManager";
+import { getDeviceType, getReferrerDomain } from "./analytics";
 
 /**
  * Save a single quiz answer to the database
@@ -37,7 +38,8 @@ export async function saveQuizAnswer(
  */
 export async function saveQuizResult(
   onsenType: OnsenType,
-  answers: QuizAnswers
+  answers: QuizAnswers,
+  timeSpentSeconds?: number | null
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const sessionId = getSessionId();
@@ -48,6 +50,9 @@ export async function saveQuizResult(
         session_id: sessionId,
         onsen_type: onsenType,
         answers: answers,
+        time_spent_seconds: timeSpentSeconds,
+        device_type: getDeviceType(),
+        referrer_domain: getReferrerDomain(),
       });
 
     if (error) {

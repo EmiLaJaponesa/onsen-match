@@ -1,10 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { QuizAnswers } from '@/types/onsen';
 import { questions } from '@/data/questions';
 import { calculateOnsenType } from '@/utils/calculateResult';
 import { saveQuizAnswer, saveQuizResult } from '@/utils/saveQuizData';
 import { useToast } from '@/hooks/use-toast';
+import { trackEvent } from '@/utils/analytics';
 
 export const useQuizState = () => {
   const navigate = useNavigate();
@@ -18,6 +19,19 @@ export const useQuizState = () => {
   const isLastQuestion = currentQuestion === questions.length - 1;
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
+  // Track quiz start
+  useEffect(() => {
+    if (currentQuestion === 0 && Object.keys(answers).length === 0) {
+      const startTime = Date.now().toString();
+      localStorage.setItem('quiz_start_time', startTime);
+      
+      trackEvent({ 
+        eventType: 'quiz_started',
+        eventData: { question_count: questions.length }
+      });
+    }
+  }, [currentQuestion, answers]);
+
   const handleNext = useCallback(async () => {
     if (!selectedOption || isSaving) return;
 
@@ -30,7 +44,21 @@ export const useQuizState = () => {
 
     if (isLastQuestion) {
       const result = calculateOnsenType(newAnswers);
-      const saveResult = await saveQuizResult(result, newAnswers);
+      
+      // Calculate time spent
+      const startTime = localStorage.getItem('quiz_start_time');
+      const timeSpent = startTime ? Math.floor((Date.now() - parseInt(startTime)) / 1000) : null;
+      
+      // Track quiz completion
+      trackEvent({
+        eventType: 'quiz_completed',
+        eventData: { 
+          result: result,
+          time_spent: timeSpent 
+        }
+      });
+      
+      const saveResult = await saveQuizResult(result, newAnswers, timeSpent);
       
       if (!saveResult.success) {
         toast({
@@ -39,6 +67,9 @@ export const useQuizState = () => {
           variant: "destructive",
         });
       }
+      
+      // Clear start time
+      localStorage.removeItem('quiz_start_time');
       
       setIsSaving(false);
       navigate(`/result/${result}`);

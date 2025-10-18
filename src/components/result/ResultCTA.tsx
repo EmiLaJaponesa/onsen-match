@@ -1,12 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import { EXTERNAL_LINKS } from '@/constants/app';
+import { trackEvent } from '@/utils/analytics';
 
 interface ResultCTAProps {
   onsenType: string;
 }
 
 export const ResultCTA = ({ onsenType }: ResultCTAProps) => {
+  const handleCTAClick = () => {
+    trackEvent({
+      eventType: 'cta_click',
+      eventData: { 
+        cta_type: 'tour_consultation',
+        onsen_type: onsenType 
+      }
+    });
+  };
+
   return (
     <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.4s' }}>
       <div className="backdrop-blur-md bg-gradient-to-br from-white/80 to-gray-50/80 dark:from-gray-800/80 dark:to-gray-900/80 border-2 border-border rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
@@ -33,6 +44,7 @@ export const ResultCTA = ({ onsenType }: ResultCTAProps) => {
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2"
+            onClick={handleCTAClick}
           >
             Consulta gratis
             <ExternalLink className="w-5 h-5" />
