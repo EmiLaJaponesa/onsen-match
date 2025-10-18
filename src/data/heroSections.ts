@@ -35,7 +35,7 @@ export const serviceFeatures: ServiceFeature[] = [
 ];
 
 export const onsenStats: OnsenStat[] = [
-  { number: "1", label: "Responde un breve cuestionario" },
-  { number: "2", label: "La IA analiza tus respuestas" },
-  { number: "3", label: "Descubre tu próximo destino de onsen en Japón" },
+  { number: "1", label: "Responde un breve cuestionario. Solo toma 2 minutos." },
+  { number: "2", label: "La IA analiza tus respuestas y selecciona uno de los 10 tipos de agua termal." },
+  { number: "3", label: "Descubre tu próximo destino de onsen. ¡Empieza a planear tu viaje a Japón!" },
 ];
