@@ -6,10 +6,12 @@ export const Footer = () => {
           <p>© 2025 Onsen Finder. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
             <a 
-              href="mailto:contact@onsenfinder.com" 
+              href="https://www.emilajaponesa.com" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              Contacto
+              Creado por Emi Jin
             </a>
             <a 
               href="#" 
