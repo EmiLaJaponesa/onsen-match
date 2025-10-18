@@ -39,7 +39,7 @@ export const RelatedTypesSection = ({ currentType }: RelatedTypesSectionProps) =
               <Button 
                 asChild 
                 variant="outline" 
-                className="w-full mt-2"
+                className="w-full mt-2 hover:bg-primary/10 hover:text-primary hover:border-primary/50"
                 size="sm"
               >
                 <Link to={`/result/${item.type}`}>

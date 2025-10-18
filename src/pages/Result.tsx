@@ -38,6 +38,11 @@ const Result = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll to top when type changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [type]);
+
   // Embla Carousel dot navigation
   useEffect(() => {
     if (!emblaApi) return;
