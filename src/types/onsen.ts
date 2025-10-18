@@ -33,6 +33,7 @@ export interface OnsenDestination {
 export interface OnsenResult {
   type: OnsenType;
   title: string;
+  japaneseTitle: string;
   emoji: string;
   characteristics: string;
   effects: string;

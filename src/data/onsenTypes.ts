@@ -4,6 +4,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   chloride: {
     type: 'chloride',
     title: 'Agua clorurada – Calor y descanso',
+    japaneseTitle: '塩化物泉',
     emoji: '🧡',
     characteristics: 'Contiene sal natural. Al salir del baño, forma una película que conserva el calor.',
     effects: 'Calienta el cuerpo desde el interior, mejora la circulación y relaja músculos tensos.',
@@ -34,6 +35,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   bicarbonate: {
     type: 'bicarbonate',
     title: 'Agua bicarbonatada – Belleza natural',
+    japaneseTitle: '炭酸水素塩泉',
     emoji: '✨',
     characteristics: 'Conocida como "agua de belleza natural".',
     effects: 'Limpia los poros, suaviza la piel y elimina células muertas.',
@@ -64,6 +66,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   sulfur: {
     type: 'sulfur',
     title: 'Agua sulfurosa – Energía y purificación',
+    japaneseTitle: '硫黄泉',
     emoji: '💛',
     characteristics: 'Tiene un aroma distintivo al azufre y un color ligeramente turbio.',
     effects: 'Purifica la piel, mejora problemas cutáneos y alivia reumatismo y dolores musculares.',
@@ -94,6 +97,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   carbonated: {
     type: 'carbonated',
     title: 'Agua carbonatada – Activación y vitalidad',
+    japaneseTitle: '二酸化炭素泉',
     emoji: '💙',
     characteristics: 'Contiene gas carbónico natural, con burbujas finas en la superficie.',
     effects: 'Estimula la circulación, reduce la presión arterial y relaja profundamente.',
@@ -124,6 +128,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   sulfate: {
     type: 'sulfate',
     title: 'Agua sulfatada – Recuperación y renovación',
+    japaneseTitle: '硫酸塩泉',
     emoji: '💜',
     characteristics: 'Rica en minerales como calcio y sodio.',
     effects: 'Favorece la regeneración celular y mejora la circulación sanguínea.',
@@ -154,6 +159,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   simple: {
     type: 'simple',
     title: 'Agua alcalina simple – Suavidad y equilibrio',
+    japaneseTitle: '単純温泉',
     emoji: '🤍',
     characteristics: 'Suave, clara y sin un aroma fuerte. Apta para todo tipo de piel y edades.',
     effects: 'Relaja el cuerpo, mejora la circulación y alivia el cansancio diario.',
@@ -184,6 +190,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   ferruginous: {
     type: 'ferruginous',
     title: 'Agua ferruginosa – Calor interno y fuerza',
+    japaneseTitle: '鉄泉',
     emoji: '🧡',
     characteristics: 'De color rojizo o marrón debido a su alto contenido en hierro.',
     effects: 'Mejora la anemia, la fatiga y la debilidad general.',
@@ -214,6 +221,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   acidic: {
     type: 'acidic',
     title: 'Agua ácida – Limpieza profunda',
+    japaneseTitle: '酸性泉',
     emoji: '💚',
     characteristics: 'Con un pH bajo, tiene efecto antibacteriano natural.',
     effects: 'Equilibra la piel grasa, combate el acné y deja una sensación de limpieza profunda.',
@@ -244,6 +252,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   radon: {
     type: 'radon',
     title: 'Agua radonada – Calma y bienestar profundo',
+    japaneseTitle: '放射能泉',
     emoji: '💙',
     characteristics: 'Contiene pequeñas cantidades naturales de radón, sin olor ni color. Es agua fría.',
     effects: 'Estimula el metabolismo, fortalece el sistema inmunológico y alivia el dolor crónico.',
@@ -274,6 +283,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
   alkaline: {
     type: 'alkaline',
     title: 'Agua de sosa – Piel sedosa',
+    japaneseTitle: 'アルカリ性単純温泉',
     emoji: '💚',
     characteristics: 'Conocida como "agua de belleza natural".',
     effects: 'Limpia los poros, suaviza la piel y elimina células muertas.',

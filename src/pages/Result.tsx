@@ -105,6 +105,9 @@ const Result = () => {
                     {result.title.split(' – ')[1]}
                   </CardDescription>
                 )}
+                <CardDescription className="text-lg md:text-xl text-primary/70 mt-2">
+                  {result.japaneseTitle}
+                </CardDescription>
               </div>
             </div>
 
