@@ -23,9 +23,12 @@ export const OnsenTypesPreview = () => {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">10 tipos únicos de onsen</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            10 tipos de agua de onsen japonés y sus beneficios
+          </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Cada tipo de agua mineral ofrece experiencias y beneficios únicos para tu bienestar
+            Cada tipo de agua termal (onsen) tiene una composición mineral diferente. Sus propiedades terapéuticas
+            ayudan a aliviar diversas molestias y promover el bienestar natural.
           </p>
         </div>
 
