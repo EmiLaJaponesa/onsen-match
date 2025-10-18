@@ -8,6 +8,8 @@ import { onsenImages } from '@/utils/onsenImages';
 import { useToast } from '@/hooks/use-toast';
 import { InfoSection } from '@/components/result/InfoSection';
 import { DestinationCard } from '@/components/result/DestinationCard';
+import { FAQSection } from '@/components/result/FAQSection';
+import { RelatedTypesSection } from '@/components/result/RelatedTypesSection';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useState, useEffect } from 'react';
 
@@ -243,12 +245,12 @@ const Result = () => {
                 />
               </div>
 
-              {/* Description Section */}
+              {/* Description Section - Enhanced readability */}
               <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <h3 className="text-2xl font-semibold text-foreground">
+                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
                   Descripción
                 </h3>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" style={{ lineHeight: '1.8' }}>
                   {result.description}
                 </p>
               </div>
@@ -292,8 +294,18 @@ const Result = () => {
                 </div>
               </div>
 
+              {/* Related Types Section */}
+              <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <RelatedTypesSection currentType={type as OnsenType} />
+              </div>
+
+              {/* FAQ Section */}
+              <div className="animate-fade-in" style={{ animationDelay: '0.45s' }}>
+                <FAQSection />
+              </div>
+
               {/* CTA Section - Redesigned */}
-              <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.4s' }}>
+              <div className="space-y-6 animate-fade-in will-change-[opacity,transform]" style={{ animationDelay: '0.5s' }}>
                 <div className="backdrop-blur-md bg-gradient-to-br from-secondary/20 to-secondary/10 border-2 border-secondary/30 rounded-3xl p-10 md:p-14 space-y-8 shadow-2xl">
                   <div className="text-center space-y-3">
                     <p className="text-2xl md:text-3xl font-bold text-foreground">
