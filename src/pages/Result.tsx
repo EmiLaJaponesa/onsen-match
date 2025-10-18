@@ -96,9 +96,16 @@ const Result = () => {
               <CardTitle className="text-2xl md:text-3xl mb-4 text-foreground">
                 Tu tipo de onsen ideal es:
               </CardTitle>
-              <CardDescription className="text-3xl md:text-5xl font-bold text-primary">
-                {result.title}
-              </CardDescription>
+              <div className="space-y-2">
+                <CardDescription className="text-3xl md:text-5xl font-bold text-primary">
+                  {result.title.split(' – ')[0]}
+                </CardDescription>
+                {result.title.split(' – ')[1] && (
+                  <CardDescription className="text-xl md:text-2xl font-semibold text-primary/80">
+                    {result.title.split(' – ')[1]}
+                  </CardDescription>
+                )}
+              </div>
             </div>
 
             <CardContent className="p-8 md:p-12 space-y-10">
