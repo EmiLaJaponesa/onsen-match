@@ -19,7 +19,9 @@ const Result = () => {
   const { toast } = useToast();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showShareMenu, setShowShareMenu] = useState(false);
-  const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start' });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: 'start' });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   
   const result = type ? onsenResults[type] : null;
   const resultImage = type ? onsenImages[type] : null;
@@ -35,6 +37,25 @@ const Result = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Embla Carousel dot navigation
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
   const getShareText = () => {
     return `¡Descubrí mi tipo de onsen ideal: ${result?.title}! 🇯🇵♨️ Encuentra el tuyo aquí:`;
@@ -308,19 +329,39 @@ const Result = () => {
                 </div>
                 
                 {/* Mobile Carousel */}
-                <div className="md:hidden overflow-hidden" ref={emblaRef}>
-                  <div className="flex gap-4">
-                    {result.destinations.map((destination, index) => (
-                      <div key={index} className="flex-[0_0_85%] min-w-0">
-                        <DestinationCard 
-                          name={destination.name}
-                          kanji={destination.kanji}
-                          location={destination.location}
-                          description={destination.description}
-                        />
-                      </div>
-                    ))}
+                <div className="md:hidden space-y-4">
+                  <div className="overflow-hidden" ref={emblaRef}>
+                    <div className="flex gap-4">
+                      {result.destinations.map((destination, index) => (
+                        <div key={index} className="flex-[0_0_88%] min-w-0">
+                          <DestinationCard 
+                            name={destination.name}
+                            kanji={destination.kanji}
+                            location={destination.location}
+                            description={destination.description}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
+                  
+                  {/* Dot Navigation */}
+                  {scrollSnaps.length > 1 && (
+                    <div className="flex justify-center gap-2">
+                      {scrollSnaps.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`h-2 rounded-full transition-all ${
+                            index === selectedIndex 
+                              ? "bg-primary w-8" 
+                              : "bg-primary/30 w-2"
+                          }`}
+                          onClick={() => scrollTo(index)}
+                          aria-label={`スライド${index + 1}へ移動`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Desktop Grid */}
