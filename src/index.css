@@ -121,8 +121,22 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Glassmorphism Utility */
   .glass-card {
-    @apply bg-white/20 backdrop-blur-md border border-white/30;
+    @apply backdrop-blur-md bg-white/20 border border-white/30;
+  }
+  
+  .glass-morphism {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+  
+  .dark .glass-morphism {
+    background-color: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .hero-gradient {
@@ -169,61 +183,13 @@ All colors MUST be HSL.
     }
   }
   
-  /* Quiz Section Mist Effect - More Subtle */
-  .quiz-mist-effect {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse 600px 300px at 10% 20%, hsl(175 45% 85% / 0.08), transparent),
-      radial-gradient(ellipse 500px 250px at 90% 80%, hsl(0 0% 100% / 0.06), transparent),
-      radial-gradient(ellipse 550px 275px at 50% 50%, hsl(175 45% 90% / 0.05), transparent);
-    animation: quiz-mist-float 25s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  @keyframes quiz-mist-float {
-    0%, 100% { 
-      transform: translateY(0) scale(1);
-      opacity: 0.4;
-    }
-    50% { 
-      transform: translateY(-15px) scale(1.03);
-      opacity: 0.6;
-    }
-  }
-  
-  /* Quiz Option Ripple Effect */
-  .quiz-option {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .quiz-option::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, hsl(175 45% 42% / 0.1), transparent);
-    transform: scale(0);
-    transition: transform 0.4s ease-out;
-    pointer-events: none;
-  }
-  
-  .quiz-option:hover::before {
-    transform: scale(1.5);
-  }
 }
 
 /* Accessibility: Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .mist-effect,
-  .quiz-mist-effect {
+  .mist-effect {
     animation: none !important;
     opacity: 0.3 !important;
-  }
-  
-  .quiz-option::before {
-    transition: none !important;
   }
   
   * {
