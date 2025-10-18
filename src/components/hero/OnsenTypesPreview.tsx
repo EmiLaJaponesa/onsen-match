@@ -13,7 +13,7 @@ const onsenTypeNames: Record<OnsenType, { title: string; subtitle: string }> = {
   ferruginous: { title: "Ferruginoso", subtitle: "Rico en hierro" },
   acidic: { title: "Ácido", subtitle: "Estimulante" },
   radon: { title: "Radón", subtitle: "Terapéutico" },
-  alkaline: { title: "Alcalino", subtitle: "Rejuvenecedor" },
+  alkaline: { title: "Yodada", subtitle: "Rejuvenecedor" },
 };
 
 export const OnsenTypesPreview = () => {
