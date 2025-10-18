@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import onsenHero from '@/assets/onsen-hero.jpg';
+import { SteamAnimation } from '@/components/SteamAnimation';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -14,6 +15,9 @@ const Index = () => {
       >
         <div className="absolute inset-0 hero-gradient" />
       </div>
+
+      {/* Steam Animation */}
+      <SteamAnimation />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
