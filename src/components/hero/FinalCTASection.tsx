@@ -27,7 +27,7 @@ export const FinalCTASection = () => {
           <Button
             onClick={() => navigate('/quiz')}
             size="lg"
-            className="text-base md:text-lg px-10 py-6 hover:scale-105 transition-transform duration-200 shadow-lg"
+            className="text-base md:text-lg px-6 py-4 md:px-10 md:py-6 hover:scale-105 transition-transform duration-200 shadow-lg"
           >
             Comenzar el test ahora
           </Button>
