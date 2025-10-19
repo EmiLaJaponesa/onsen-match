@@ -6,6 +6,7 @@ import { calculateOnsenType } from '@/utils/calculateResult';
 import { saveQuizAnswer, saveQuizResult } from '@/utils/saveQuizData';
 import { useToast } from '@/hooks/use-toast';
 import { trackEvent } from '@/utils/analytics';
+import { onsenImages } from '@/utils/onsenImages';
 
 export const useQuizState = () => {
   const navigate = useNavigate();
@@ -44,6 +45,12 @@ export const useQuizState = () => {
 
     if (isLastQuestion) {
       const result = calculateOnsenType(newAnswers);
+      
+      // Prefetch result image
+      if (onsenImages[result]) {
+        const img = new Image();
+        img.src = onsenImages[result];
+      }
       
       // Calculate time spent
       const startTime = localStorage.getItem('quiz_start_time');

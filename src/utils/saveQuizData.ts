@@ -22,13 +22,17 @@ export async function saveQuizAnswer(
       });
 
     if (error) {
-      console.error('Error saving quiz answer:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error saving quiz answer:', error);
+      }
       return { success: false, error: error.message };
     }
 
     return { success: true };
   } catch (error) {
-    console.error('Unexpected error saving quiz answer:', error);
+    if (import.meta.env.DEV) {
+      console.error('Unexpected error saving quiz answer:', error);
+    }
     return { success: false, error: 'Error inesperado al guardar la respuesta' };
   }
 }
@@ -56,13 +60,17 @@ export async function saveQuizResult(
       });
 
     if (error) {
-      console.error('Error saving quiz result:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error saving quiz result:', error);
+      }
       return { success: false, error: error.message };
     }
 
     return { success: true };
   } catch (error) {
-    console.error('Unexpected error saving quiz result:', error);
+    if (import.meta.env.DEV) {
+      console.error('Unexpected error saving quiz result:', error);
+    }
     return { success: false, error: 'Error inesperado al guardar el resultado' };
   }
 }
@@ -85,13 +93,17 @@ export async function getSessionResults(): Promise<{
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Error fetching session results:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching session results:', error);
+      }
       return { success: false, error: error.message };
     }
 
     return { success: true, results: data };
   } catch (error) {
-    console.error('Unexpected error fetching session results:', error);
+    if (import.meta.env.DEV) {
+      console.error('Unexpected error fetching session results:', error);
+    }
     return { success: false, error: 'Error al cargar resultados anteriores' };
   }
 }

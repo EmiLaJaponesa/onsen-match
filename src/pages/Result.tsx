@@ -22,7 +22,7 @@ const Result = () => {
   const { result, image } = useOnsenResult(type);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [type]);
 
   if (!result || !image) {
@@ -37,27 +37,12 @@ const Result = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background py-12 md:py-20">
+    <div className="min-h-screen bg-background">
       <ScrollProgress />
       <ShareButton title={result.title} />
 
-      {/* Mobile Fixed CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-lg border-t border-border p-4 z-40 md:hidden shadow-2xl">
-        <Button 
-          className="w-full h-12 text-base font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground"
-          asChild
-        >
-          <a 
-            href={EXTERNAL_LINKS.JAPAN_TOURS}
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            ¡Quiero viajar a Japón!
-          </a>
-        </Button>
-      </div>
-
-      <div className="container mx-auto px-4 pb-20 md:pb-4">
+      <div className="py-12 md:py-20">
+        <div className="container mx-auto px-4 pb-24 md:pb-4">
         <div className="max-w-4xl mx-auto space-y-8">
           <Card className="shadow-2xl border border-white/20 animate-fade-in overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 transition-all duration-300">
             <ResultHero 
@@ -94,6 +79,23 @@ const Result = () => {
             </CardContent>
           </Card>
         </div>
+      </div>
+      </div>
+
+      {/* Mobile Sticky CTA Bar */}
+      <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur-lg border-t border-border p-4 z-40 md:hidden shadow-2xl">
+        <Button 
+          className="w-full h-12 text-base font-bold bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+          asChild
+        >
+          <a 
+            href={EXTERNAL_LINKS.JAPAN_TOURS}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            ¡Quiero viajar a Japón!
+          </a>
+        </Button>
       </div>
 
       {/* Footer */}

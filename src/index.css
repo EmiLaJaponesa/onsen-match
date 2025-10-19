@@ -261,11 +261,28 @@ All colors MUST be HSL.
   }
 }
 
-/* Accessibility: Respect user's motion preferences */
+/* Accessibility: Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+/* Performance: GPU acceleration hints */
+.animate-fade-in,
+.hover-scale,
+.hover-lift {
+  will-change: opacity, transform;
+}
+
+/* Improved focus visibility for accessibility */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
 }

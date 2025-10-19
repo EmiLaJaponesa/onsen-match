@@ -31,10 +31,10 @@ export const ShareButton = ({ title }: ShareButtonProps) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div className="fixed top-6 right-2 md:right-6 z-50">
       <div className="relative">
         {showShareMenu && (
-          <div className="absolute bottom-16 right-0 bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-xl p-3 space-y-2 animate-fade-in will-change-[opacity,transform]">
+          <div className="absolute top-16 right-0 bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-xl p-3 space-y-2 animate-fade-in will-change-[opacity,transform] min-w-[160px] max-w-[90vw]">
             <Button
               onClick={() => socialShareUtils.shareToTwitter(title)}
               variant="outline"

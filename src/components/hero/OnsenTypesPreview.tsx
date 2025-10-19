@@ -36,7 +36,17 @@ export const OnsenTypesPreview = () => {
           {(Object.keys(onsenTypeNames) as OnsenType[]).map((type, index) => (
             <div
               key={type}
-              className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer animate-fade-in hover:scale-105 transition-transform duration-300 will-change-transform will-change-opacity"
+              onClick={() => navigate(`/result/${type}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate(`/result/${type}`);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver detalles de ${onsenTypeNames[type].title} - ${onsenTypeNames[type].subtitle}`}
+              className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer animate-fade-in hover:scale-105 transition-transform duration-300 will-change-transform will-change-opacity focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               style={{ animationDelay: index < 3 ? `${index * 100}ms` : "0ms" }}
             >
               <img
@@ -45,6 +55,8 @@ export const OnsenTypesPreview = () => {
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
+                width="300"
+                height="300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-0 flex flex-col items-center justify-end p-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">

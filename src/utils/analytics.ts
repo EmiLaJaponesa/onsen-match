@@ -1,11 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { getSessionId } from "./sessionManager";
-
-interface AnalyticsEvent {
-  eventType: string;
-  eventData?: Record<string, any>;
-  pagePath?: string;
-}
+import { AnalyticsEvent } from "@/types/analytics";
 
 /**
  * Detect device type based on screen width
@@ -60,7 +55,9 @@ export async function trackEvent({
       browser_language: navigator.language,
     });
   } catch (error) {
-    console.error('Analytics tracking error:', error);
+    if (import.meta.env.DEV) {
+      console.error('Analytics tracking error:', error);
+    }
   }
 }
 
@@ -86,7 +83,9 @@ export async function trackUTMParams(): Promise<void> {
         landing_page: window.location.pathname,
       });
     } catch (error) {
-      console.error('UTM tracking error:', error);
+      if (import.meta.env.DEV) {
+        console.error('UTM tracking error:', error);
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { QuestionOption } from '@/types/onsen';
@@ -8,7 +9,7 @@ interface QuizOptionsProps {
   onOptionChange: (value: string) => void;
 }
 
-export const QuizOptions = ({ options, selectedOption, onOptionChange }: QuizOptionsProps) => {
+export const QuizOptions = memo(({ options, selectedOption, onOptionChange }: QuizOptionsProps) => {
   return (
     <RadioGroup 
       value={selectedOption} 
@@ -39,4 +40,4 @@ export const QuizOptions = ({ options, selectedOption, onOptionChange }: QuizOpt
       ))}
     </RadioGroup>
   );
-};
+});

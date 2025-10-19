@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import onsenHero from "@/assets/onsen-hero.jpg";
+import onsenHero from "@/assets/onsen-hero-new.jpg";
 import { ServiceFeaturesSection } from "@/components/hero/ServiceFeaturesSection";
 import { OnsenStatsSection } from "@/components/hero/OnsenStatsSection";
 import { OnsenTypesPreview } from "@/components/hero/OnsenTypesPreview";
@@ -29,7 +29,7 @@ const Index = () => {
             <main className="max-w-5xl mx-auto text-center space-y-12">
               {/* Main Title */}
               <h1
-                className="text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1]"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-8 animate-fade-in leading-[1.1] px-2"
                 style={{ animationDelay: "0.1s" }}
               >
                 Descubre tu tipo de Onsen japonés ideal
