@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { QuizAnswers } from '@/types/onsen';
 import { questions } from '@/data/questions';
 import { calculateOnsenType } from '@/utils/calculateResult';
+import { calculateOnsenTypeV2 } from '@/utils/calculateResultV2';
 import { saveQuizAnswer, saveQuizResult } from '@/utils/saveQuizData';
+
+const USE_V2_ALGORITHM = import.meta.env.VITE_USE_V2_ALGORITHM === 'true';
 import { useToast } from '@/hooks/use-toast';
 import { trackEvent } from '@/utils/analytics';
 import { onsenImages } from '@/utils/onsenImages';
@@ -44,7 +47,11 @@ export const useQuizState = () => {
     await saveQuizAnswer(question.id, selectedOption);
 
     if (isLastQuestion) {
-      const result = calculateOnsenType(newAnswers);
+      const calculationResult = USE_V2_ALGORITHM 
+        ? await calculateOnsenTypeV2(newAnswers)
+        : { topType: calculateOnsenType(newAnswers), topPercentage: 100, confidence: 'high' as const, rawScores: {}, frequencyAdjusted: false };
+      
+      const result = calculationResult.topType;
       
       // Prefetch result image
       if (onsenImages[result]) {
@@ -61,7 +68,8 @@ export const useQuizState = () => {
         eventType: 'quiz_completed',
         eventData: { 
           result: result,
-          time_spent: timeSpent 
+          time_spent: timeSpent,
+          algorithm_version: USE_V2_ALGORITHM ? 'v2' : 'v1'
         }
       });
       
@@ -75,11 +83,10 @@ export const useQuizState = () => {
         });
       }
       
-      // Clear start time
       localStorage.removeItem('quiz_start_time');
-      
       setIsSaving(false);
-      navigate(`/result/${result}`);
+      
+      navigate(`/result/${result}`, { state: { calculationResult: USE_V2_ALGORITHM ? calculationResult : undefined } });
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption('');

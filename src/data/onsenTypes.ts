@@ -1,4 +1,10 @@
 import { OnsenResult, OnsenType } from "@/types/onsen";
+import { destinationsDatabase, onsenTypeDestinations } from './destinations';
+
+// Helper: get destinations for a type
+function getDestinationsForType(type: OnsenType) {
+  return onsenTypeDestinations[type].map(id => destinationsDatabase[id]);
+}
 
 export const onsenResults: Record<OnsenType, OnsenResult> = {
   chloride: {
@@ -12,26 +18,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "Perfecta para invierno o después de un día largo. Sensación duradera de bienestar.",
     description:
       "Este tipo de agua retiene el calor en tu cuerpo y ayuda a aliviar la tensión muscular. Es ideal si sientes frío constante, dolor en los hombros o necesitas un descanso profundo.",
-    destinations: [
-      {
-        name: "Atami Onsen",
-        kanji: "熱海温泉",
-        location: "Shizuoka",
-        description: "Junto al mar; retiene el calor y afloja la tensión muscular.",
-      },
-      {
-        name: "Wakura Onsen",
-        kanji: "和倉温泉",
-        location: "Ishikawa",
-        description: "Bahía tranquila; baño de larga permanencia térmica.",
-      },
-      {
-        name: "Shirahama Onsen",
-        kanji: "白浜温泉",
-        location: "Wakayama",
-        description: "Costero y luminoso; recuperación con vista oceánica.",
-      },
-    ],
+    destinations: getDestinationsForType('chloride')
   },
   bicarbonate: {
     type: "bicarbonate",
@@ -44,26 +31,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "Deja la piel como seda. Es el secreto de la piel japonesa luminosa.",
     description:
       "Conocida como el agua de la belleza, suaviza la piel y le da un aspecto más limpio y luminoso. Perfecta si buscas cuidar tu piel de forma natural.",
-    destinations: [
-      {
-        name: "Ureshino Onsen",
-        kanji: "嬉野温泉",
-        location: "Saga",
-        description: 'Conocida como "agua de belleza"; piel sedosa.',
-      },
-      {
-        name: "Shima Onsen",
-        kanji: "四万温泉",
-        location: "Gunma",
-        description: "Transparente y amable con la piel; descanso en valle sereno.",
-      },
-      {
-        name: "Yamanaka Onsen / Yamashiro Onsen",
-        kanji: "山中温泉・山代温泉",
-        location: "Ishikawa",
-        description: "Tradición de belleza y artes; baños que suavizan la piel.",
-      },
-    ],
+    destinations: getDestinationsForType('bicarbonate')
   },
   sulfur: {
     type: "sulfur",
@@ -76,26 +44,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: 'El "onsen de la purificación". Sentirás que tu cuerpo se reinicia desde dentro.',
     description:
       "Con su aroma característico, esta agua ayuda a revitalizar el cuerpo y mejorar la circulación. Ideal para quienes buscan energía renovada y limpiar la piel profundamente.",
-    destinations: [
-      {
-        name: "Kusatsu Onsen",
-        kanji: "草津温泉",
-        location: "Gunma",
-        description: 'Famosa por su "yubatake"; purificación intensa.',
-      },
-      {
-        name: "Zao Onsen",
-        kanji: "蔵王温泉",
-        location: "Yamagata",
-        description: "Ácida y sulfurosa; piel más limpia y sensación profunda de reset.",
-      },
-      {
-        name: "Noboribetsu Onsen",
-        kanji: "登別温泉",
-        location: "Hokkaido",
-        description: '"Valle del infierno"; múltiples manantiales ricos en azufre.',
-      },
-    ],
+    destinations: getDestinationsForType('sulfur')
   },
   carbonated: {
     type: "carbonated",
@@ -108,26 +57,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "Bañarte en esta agua es como recibir un masaje invisible. Ligereza absoluta.",
     description:
       "Las burbujas naturales estimulan la circulación y activan tu sistema. Perfecta si necesitas un impulso de energía o quieres mejorar tu flujo sanguíneo.",
-    destinations: [
-      {
-        name: "Nagayu Onsen",
-        kanji: "長湯温泉",
-        location: "Oita",
-        description: "Alta concentración de CO₂; ligereza inmediata.",
-      },
-      {
-        name: "Tanohara / Kuju área",
-        kanji: "田の原温泉・久住",
-        location: "Kumamoto–Oita",
-        description: "Burbujas finas; descanso profundo en montaña.",
-      },
-      {
-        name: "Hida-Osaka área",
-        kanji: "飛騨小坂",
-        location: "Gifu",
-        description: "Manantiales carbónicos en valle; baño vivificante.",
-      },
-    ],
+    destinations: getDestinationsForType('carbonated')
   },
   sulfate: {
     type: "sulfate",
@@ -141,26 +71,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "Refuerza tu vitalidad desde adentro. Sensación de energía limpia y orden interior.",
     description:
       "Ayuda a calmar dolores articulares y musculares, promoviendo la recuperación física. Ideal si sientes rigidez o necesitas reparar tu cuerpo.",
-    destinations: [
-      {
-        name: "Tamatsukuri Onsen",
-        kanji: "玉造温泉",
-        location: "Shimane",
-        description: '"Onsen de los dioses"; apoyo a la regeneración cutánea.',
-      },
-      {
-        name: "Naruko Onsen",
-        kanji: "鳴子温泉",
-        location: "Miyagi",
-        description: "Aguas minerales variadas; bienestar para circulación.",
-      },
-      {
-        name: "Shiobara Onsen",
-        kanji: "塩原温泉",
-        location: "Tochigi",
-        description: "Bosques y caminatas; sensación de energía ordenada.",
-      },
-    ],
+    destinations: getDestinationsForType('sulfate')
   },
   simple: {
     type: "simple",
@@ -173,26 +84,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "Un baño sencillo, pero profundo. El tipo de agua más universal de Japón.",
     description:
       "Con una composición suave y equilibrada, esta agua es perfecta para pieles sensibles o para quienes buscan una experiencia relajante sin estímulos fuertes.",
-    destinations: [
-      {
-        name: "Dogo Onsen",
-        kanji: "道後温泉",
-        location: "Ehime",
-        description: "Suave y clara; descanso clásico con historia.",
-      },
-      {
-        name: "Hakone Onsen",
-        kanji: "箱根温泉",
-        location: "Kanagawa",
-        description: "Fácil acceso desde Tokio; cerca del Monte Fuji y variedad de baños.",
-      },
-      {
-        name: "Kinosaki Onsen",
-        kanji: "城崎温泉",
-        location: "Hyogo",
-        description: "Paseo de soto-yu por siete baños; relajación sin estímulos fuertes.",
-      },
-    ],
+    destinations: getDestinationsForType('simple')
   },
   ferruginous: {
     type: "ferruginous",
@@ -205,26 +97,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: '"El baño de hierro" que da fuerza y estabilidad.',
     description:
       "Rica en hierro, esta agua ayuda a calentar el cuerpo desde dentro y es ideal para quienes tienen anemia o sienten frío constante.",
-    destinations: [
-      {
-        name: "Arima Onsen – Kinsen",
-        kanji: "有馬温泉・金泉",
-        location: "Hyogo",
-        description: "Rojiza y salina; calidez que fortalece.",
-      },
-      {
-        name: "Ikaho Onsen – Kogane no Yu",
-        kanji: "伊香保温泉・黄金の湯",
-        location: "Gunma",
-        description: "Tono ámbar; confort para manos y pies fríos.",
-      },
-      {
-        name: "Takarazuka Onsen",
-        kanji: "宝塚温泉",
-        location: "Hyogo",
-        description: "Baños con hierro; relajación suave en ciudad termal histórica.",
-      },
-    ],
+    destinations: getDestinationsForType('ferruginous')
   },
   acidic: {
     type: "acidic",
@@ -238,26 +111,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: '"Belleza a través de la renovación". Refresca cuerpo y mente.',
     description:
       "Con propiedades antibacterianas, esta agua es excelente para limpiar la piel y tratar problemas como el acné o la piel grasa.",
-    destinations: [
-      {
-        name: "Sukayu Onsen",
-        kanji: "酸ヶ湯温泉",
-        location: "Aomori",
-        description: "Alta montaña; sensación de limpieza intensa.",
-      },
-      {
-        name: "Myoban Onsen",
-        kanji: "明礬温泉",
-        location: "Oita",
-        description: "Histórica y poderosa; equilibrio para piel grasa.",
-      },
-      {
-        name: "Tamagawa Onsen",
-        kanji: "玉川温泉",
-        location: "Akita",
-        description: "Muy ácida; experiencia de purificación concentrada.",
-      },
-    ],
+    destinations: getDestinationsForType('acidic')
   },
   radon: {
     type: "radon",
@@ -270,26 +124,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     experience: "El baño de la curación silenciosa. Su efecto se siente lentamente, día tras día.",
     description:
       "Este tipo de agua es conocida por sus propiedades calmantes y su capacidad para aliviar el estrés y la fatiga. Perfecta para un descanso profundo.",
-    destinations: [
-      {
-        name: "Misasa Onsen",
-        kanji: "三朝温泉",
-        location: "Tottori",
-        description: "Estancias de salud; calma sostenida día a día.",
-      },
-      {
-        name: "Masutomi Onsen",
-        kanji: "増富温泉",
-        location: "Yamanashi",
-        description: '"Radium onsen"; ritmo lento para recuperación.',
-      },
-      {
-        name: "Arima Onsen – Ginsen",
-        kanji: "有馬温泉・銀泉",
-        location: "Hyogo",
-        description: "Mezcla suave (radón/carbonatos); descanso sereno.",
-      },
-    ],
+    destinations: getDestinationsForType('radon')
   },
   alkaline: {
     type: "alkaline",
@@ -298,29 +133,10 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     emoji: "💎",
     characteristics: 'Conocida como "agua de belleza natural".',
     effects: "Antiséptica; apoyo a piel con tendencia a infecciones; coadyuvante en circulación.",
-    idealFor: "Personas con piel seca o quienes buscan un efeLicto rejuvenecedor.",
+    idealFor: "Personas con piel seca o quienes buscan un efecto rejuvenecedor.",
     experience: "Deja la piel como seda. Es el secreto de la piel japonesa luminosa.",
     description:
       "Suaviza la piel como ninguna otra agua, dejándola hidratada y con una textura sedosa. Ideal para quienes buscan el máximo cuidado de la piel.",
-    destinations: [
-      {
-        name: "Otemachi Onsen",
-        kanji: "大手町温泉",
-        location: "Tokio",
-        description: 'Conocida como "agua de belleza"; piel sedosa.',
-      },
-      {
-        name: "Tamatsukuri Onsen",
-        kanji: "玉造温泉",
-        location: "Shimane",
-        description: "Tradición de belleza; regeneración de piel.",
-      },
-      {
-        name: "Gero Onsen",
-        kanji: "下呂温泉",
-        location: "Gifu",
-        description: "Una de las tres mejores; suavidad excepcional.",
-      },
-    ],
+    destinations: getDestinationsForType('alkaline')
   },
 };

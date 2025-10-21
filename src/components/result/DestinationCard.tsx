@@ -28,6 +28,42 @@ export const DestinationCard = ({ name, kanji, location, description }: Destinat
         <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
           {description}
         </p>
+        
+        {/* Google Maps buttons */}
+        <div className="flex gap-2 mt-4">
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="flex-1"
+            asChild
+          >
+            <a 
+              href={getGoogleMapsUrl(destination)} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label={`Ver ${name} en Google Maps`}
+            >
+              <MapPin className="w-4 h-4 mr-1" />
+              Ver mapa
+            </a>
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="flex-1"
+            asChild
+          >
+            <a 
+              href={getDirectionsUrl(destination)} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label={`Cómo llegar a ${name}`}
+            >
+              <Navigation className="w-4 h-4 mr-1" />
+              Cómo llegar
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );
