@@ -31,6 +31,12 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
         location: "Wakayama",
         description: "Costero y luminoso; recuperación con vista oceánica.",
       },
+      {
+        name: "Shibu Onsen",
+        kanji: "渋温泉",
+        location: "Nagano",
+        description: "Pueblo tradicional japonés y está cerca del famoso Snow Monkey.",
+      },
     ],
   },
   bicarbonate: {
