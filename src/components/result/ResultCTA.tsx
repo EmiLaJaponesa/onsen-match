@@ -42,7 +42,7 @@ export const ResultCTA = ({ onsenType }: ResultCTAProps) => {
             className="flex items-center justify-center gap-2"
             onClick={handleCTAClick}
           >
-            Consulta gratís aquí
+            Consulta gratís
             <ExternalLink className="w-5 h-5" />
           </a>
         </Button>
