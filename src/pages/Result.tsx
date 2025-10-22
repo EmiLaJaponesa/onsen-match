@@ -1,8 +1,8 @@
-import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { OnsenType, CalculationResult } from '@/types/onsen';
+import { OnsenType } from '@/types/onsen';
 import { useOnsenResult } from '@/hooks/useOnsenResult';
 import { ScrollProgress } from '@/components/result/ScrollProgress';
 import { ShareButton } from '@/components/result/ShareButton';
@@ -14,17 +14,11 @@ import { ResultCTA } from '@/components/result/ResultCTA';
 import { FAQSection } from '@/components/result/FAQSection';
 import { Footer } from '@/components/layout/Footer';
 import { RelatedTypesSection } from '@/components/result/RelatedTypesSection';
-import { ConfidenceBadge } from '@/components/result/ConfidenceBadge';
-import { AlternativeOnsenCard } from '@/components/result/AlternativeOnsenCard';
-import { RarityWarning } from '@/components/result/RarityWarning';
-import { MixedWaterInfo } from '@/components/result/MixedWaterInfo';
 import { EXTERNAL_LINKS } from '@/constants/app';
 
 const Result = () => {
   const { type } = useParams<{ type: OnsenType }>();
   const navigate = useNavigate();
-  const location = useLocation();
-  const calculationResult = location.state?.calculationResult as CalculationResult | undefined;
   const { result, image } = useOnsenResult(type);
 
   useEffect(() => {
@@ -58,15 +52,6 @@ const Result = () => {
             />
 
             <CardContent className="p-8 md:p-12 space-y-10">
-              {calculationResult && (
-                <div className="text-center">
-                  <ConfidenceBadge 
-                    level={calculationResult.confidence}
-                    percentage={calculationResult.topPercentage}
-                  />
-                </div>
-              )}
-              
               <ResultDescription description={result.description} />
               
               <ResultCharacteristics 
@@ -77,17 +62,6 @@ const Result = () => {
               />
 
               <ResultDestinations destinations={result.destinations} />
-
-              <RarityWarning type={type as OnsenType} />
-              
-              <MixedWaterInfo />
-              
-              {calculationResult?.alternativeType && (
-                <AlternativeOnsenCard 
-                  type={calculationResult.alternativeType}
-                  percentage={calculationResult.alternativePercentage!}
-                />
-              )}
 
               <ResultCTA onsenType={result.title.split(' – ')[0]} />
 
