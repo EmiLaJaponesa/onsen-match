@@ -44,6 +44,24 @@ export async function trackEvent({
 }: AnalyticsEvent): Promise<void> {
   if (!isAnalyticsEnabled()) return;
 
+  // Validate event type against allowed types
+  const allowedTypes = ['page_view', 'quiz_started', 'quiz_completed', 'scroll_depth', 'cta_click', 'share_click'];
+  if (!allowedTypes.includes(eventType)) {
+    if (import.meta.env.DEV) {
+      console.warn('Invalid event type:', eventType);
+    }
+    return;
+  }
+
+  // Validate event data size to prevent DoS
+  const dataStr = JSON.stringify(eventData);
+  if (dataStr.length > 10000) {
+    if (import.meta.env.DEV) {
+      console.warn('Event data too large:', dataStr.length);
+    }
+    return;
+  }
+
   try {
     await supabase.from('analytics_events').insert({
       session_id: getSessionId(),
@@ -62,6 +80,14 @@ export async function trackEvent({
 }
 
 /**
+ * Validate and truncate UTM parameter to prevent oversized inputs
+ */
+function validateUtmParam(value: string | null, maxLength: number = 255): string | null {
+  if (!value) return null;
+  return value.slice(0, maxLength).trim();
+}
+
+/**
  * Track UTM parameters from URL
  * Call this once on app initialization
  */
@@ -75,12 +101,12 @@ export async function trackUTMParams(): Promise<void> {
     try {
       await supabase.from('utm_tracking').insert({
         session_id: getSessionId(),
-        utm_source: utmSource,
-        utm_medium: params.get('utm_medium'),
-        utm_campaign: params.get('utm_campaign'),
-        utm_content: params.get('utm_content'),
-        utm_term: params.get('utm_term'),
-        landing_page: window.location.pathname,
+        utm_source: validateUtmParam(utmSource),
+        utm_medium: validateUtmParam(params.get('utm_medium')),
+        utm_campaign: validateUtmParam(params.get('utm_campaign')),
+        utm_content: validateUtmParam(params.get('utm_content')),
+        utm_term: validateUtmParam(params.get('utm_term')),
+        landing_page: validateUtmParam(window.location.pathname, 500),
       });
     } catch (error) {
       if (import.meta.env.DEV) {

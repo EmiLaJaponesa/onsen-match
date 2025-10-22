@@ -11,6 +11,19 @@ export async function saveQuizAnswer(
   selectedOptionId: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    // Validate inputs
+    if (!selectedOptionId || selectedOptionId.trim().length === 0) {
+      return { success: false, error: 'Invalid option selected' };
+    }
+    
+    if (questionId < 1 || questionId > 10) {
+      return { success: false, error: 'Invalid question ID' };
+    }
+
+    if (selectedOptionId.length > 50) {
+      return { success: false, error: 'Option ID too long' };
+    }
+
     const sessionId = getSessionId();
     
     const { error } = await supabase
@@ -46,6 +59,29 @@ export async function saveQuizResult(
   timeSpentSeconds?: number | null
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    // Validate onsen type
+    const validOnsenTypes: OnsenType[] = [
+      'simple', 'alkaline', 'chloride', 'sulfur', 'carbonated',
+      'ferruginous', 'sulfate', 'acidic', 'radon', 'bicarbonate'
+    ];
+    
+    if (!validOnsenTypes.includes(onsenType)) {
+      return { success: false, error: 'Invalid onsen type' };
+    }
+
+    // Validate time spent
+    if (timeSpentSeconds !== null && timeSpentSeconds !== undefined) {
+      if (timeSpentSeconds < 0 || timeSpentSeconds > 3600) {
+        return { success: false, error: 'Invalid time spent value' };
+      }
+    }
+
+    // Validate answers object size
+    const answersStr = JSON.stringify(answers);
+    if (answersStr.length > 5000) {
+      return { success: false, error: 'Answers data too large' };
+    }
+
     const sessionId = getSessionId();
     
     const { error } = await supabase
