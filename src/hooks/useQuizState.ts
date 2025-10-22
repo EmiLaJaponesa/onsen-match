@@ -44,12 +44,12 @@ export const useQuizState = () => {
     await saveQuizAnswer(question.id, selectedOption);
 
     if (isLastQuestion) {
-      const result = calculateOnsenType(newAnswers);
+      const diagnosis = await calculateOnsenType(newAnswers);
       
       // Prefetch result image
-      if (onsenImages[result]) {
+      if (onsenImages[diagnosis.primaryType]) {
         const img = new Image();
-        img.src = onsenImages[result];
+        img.src = onsenImages[diagnosis.primaryType];
       }
       
       // Calculate time spent
@@ -60,12 +60,24 @@ export const useQuizState = () => {
       trackEvent({
         eventType: 'quiz_completed',
         eventData: { 
-          result: result,
+          result: diagnosis.primaryType,
+          confidence: diagnosis.confidence,
+          score: diagnosis.primaryScore,
           time_spent: timeSpent 
         }
       });
       
-      const saveResult = await saveQuizResult(result, newAnswers, timeSpent);
+      const saveResult = await saveQuizResult(
+        diagnosis.primaryType, 
+        newAnswers, 
+        timeSpent,
+        {
+          alternativeType: diagnosis.alternativeType,
+          alternativeScore: diagnosis.alternativeScore,
+          confidence: diagnosis.confidence,
+          allScores: diagnosis.allScores,
+        }
+      );
       
       if (!saveResult.success) {
         toast({
@@ -79,7 +91,7 @@ export const useQuizState = () => {
       localStorage.removeItem('quiz_start_time');
       
       setIsSaving(false);
-      navigate(`/result/${result}`);
+      navigate(`/result/${diagnosis.primaryType}`);
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption('');

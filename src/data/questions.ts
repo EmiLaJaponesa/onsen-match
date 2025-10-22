@@ -3,114 +3,183 @@ import { Question } from '@/types/onsen';
 export const questions: Question[] = [
   {
     id: 1,
-    text: '¿Cómo se siente tu cuerpo últimamente?',
-    description: 'Tu cuerpo te habla. ¿Qué te está pidiendo hoy?',
+    text: '¿Qué te gustaría mejorar hoy?',
+    description: 'Elige el objetivo principal de tu visita al onsen',
     options: [
       {
         id: '1a',
-        text: 'Me siento cansado/a, con estrés o tensión.',
-        weights: { radon: 3, simple: 2, alkaline: 2 }
+        text: 'Relajar cuerpo y mente',
+        weights: { simple: 1, radon: 1 }
       },
       {
         id: '1b',
-        text: 'Tengo dolor muscular o rigidez en los hombros.',
-        weights: { chloride: 3, sulfate: 2, ferruginous: 2 }
+        text: 'Mejorar circulación y aliviar músculos',
+        weights: { carbonated: 1, chloride: 1 }
       },
       {
         id: '1c',
-        text: 'Siento molestias en las articulaciones.',
-        weights: { sulfate: 3, chloride: 2, sulfur: 2 }
+        text: 'Hidratar o suavizar mi piel',
+        weights: { bicarbonate: 1, sulfate: 1 }
       },
       {
         id: '1d',
-        text: 'Tengo frío fácilmente o mala circulación.',
-        weights: { ferruginous: 3, chloride: 2, carbonated: 2 }
+        text: 'Purificar la piel / controlar acné',
+        weights: { acidic: 1, sulfur: 1 }
       },
       {
         id: '1e',
-        text: 'Me siento bien, solo quiero relajarme.',
-        weights: { simple: 3, alkaline: 2, bicarbonate: 2 }
+        text: 'Recuperar energía / anemia',
+        weights: { ferruginous: 1, alkaline: 1 }
       }
     ]
   },
   {
     id: 2,
-    text: '¿Cómo describirías tu tipo de piel?',
-    description: 'El agua termal japonesa puede cambiar cómo se siente tu piel.',
+    text: '¿Cómo prefieres que se sienta el agua?',
+    description: 'La textura del agua afecta tu experiencia',
     options: [
       {
         id: '2a',
-        text: 'Seca, necesito más hidratación.',
-        weights: { alkaline: 3, bicarbonate: 2, simple: 2 }
+        text: 'Ligera y sedosa',
+        weights: { simple: 1, bicarbonate: 1 }
       },
       {
         id: '2b',
-        text: 'Grasa o con tendencia al acné.',
-        weights: { acidic: 3, sulfur: 2, carbonated: 2 }
+        text: 'Con burbujas / efervescente',
+        weights: { carbonated: 1 },
+        hardBoost: { carbonated: 0.3 }
       },
       {
         id: '2c',
-        text: 'Sensible o fácilmente irritada.',
-        weights: { simple: 3, alkaline: 2, bicarbonate: 2 }
+        text: 'Densa y salada, que conserve el calor',
+        weights: { chloride: 1 }
       },
       {
         id: '2d',
-        text: 'Normal, sin problemas especiales.',
-        weights: { bicarbonate: 3, simple: 2, chloride: 1 }
+        text: 'Mineral marcada, más "consistente"',
+        weights: { sulfate: 1, ferruginous: 1 }
       }
     ]
   },
   {
     id: 3,
-    text: '¿Qué esperas al visitar un onsen?',
-    description: 'Piensa en lo que más necesitas en este momento.',
+    text: '¿Qué aromas minerales toleras o disfrutas?',
+    description: 'Algunos onsens tienen aromas característicos',
     options: [
       {
         id: '3a',
-        text: 'Relajarme y liberar el estrés.',
-        weights: { radon: 3, simple: 2, chloride: 2 }
+        text: 'Neutro (sin olor fuerte)',
+        weights: { simple: 1, radon: 1, bicarbonate: 1 }
       },
       {
         id: '3b',
-        text: 'Cuidar mi piel y sentirme más bella/o.',
-        weights: { bicarbonate: 3, alkaline: 2, acidic: 2 }
+        text: 'Volcánico / azufrado',
+        weights: { sulfur: 1 },
+        hardBoost: { sulfur: 0.3 }
       },
       {
         id: '3c',
-        text: 'Recuperar energía y mejorar mi salud.',
-        weights: { sulfur: 3, sulfate: 2, ferruginous: 2 }
+        text: 'Metálico / hierro',
+        weights: { ferruginous: 1 },
+        hardBoost: { ferruginous: 0.3 }
       },
       {
         id: '3d',
-        text: 'Conocer la cultura japonesa y disfrutar algo diferente.',
-        weights: { carbonated: 2, simple: 2, chloride: 2 }
+        text: 'Marino / yodado',
+        weights: { chloride: 1, alkaline: 1 },
+        hardBoost: { alkaline: 0.2 }
       }
     ]
   },
   {
     id: 4,
-    text: '¿En qué entorno te gustaría disfrutarlo?',
-    description: 'El lugar también cambia la experiencia del agua.',
+    text: '¿Cómo está tu piel hoy?',
+    description: 'El tipo de agua puede mejorar tu condición de piel',
     options: [
       {
         id: '4a',
-        text: 'En la montaña, rodeado de naturaleza.',
-        weights: { sulfur: 2, radon: 2, simple: 2 }
+        text: 'Seca / sensible',
+        weights: { simple: 1, bicarbonate: 1 }
       },
       {
         id: '4b',
-        text: 'Cerca del mar, escuchando las olas.',
-        weights: { chloride: 2, alkaline: 2, bicarbonate: 1 }
+        text: 'Grasa / acné (puedo tolerar más intensidad)',
+        weights: { acidic: 1, sulfur: 1 }
       },
       {
         id: '4c',
-        text: 'En un pueblo tradicional japonés.',
-        weights: { ferruginous: 2, sulfate: 2, acidic: 1 }
+        text: 'Con pequeñas heridas / cicatrización',
+        weights: { sulfate: 1 }
       },
       {
         id: '4d',
-        text: 'En la ciudad, sin alejarme demasiado.',
-        weights: { carbonated: 2, simple: 2, bicarbonate: 1 }
+        text: 'Normal; busco confort y calidez',
+        weights: { chloride: 1, radon: 1 }
+      }
+    ]
+  },
+  {
+    id: 5,
+    text: '¿Qué molestias físicas te gustaría aliviar?',
+    description: '一般適応症 - Beneficios generales del onsen',
+    options: [
+      {
+        id: '5a',
+        text: 'Dolor muscular o articular',
+        weights: { chloride: 1, carbonated: 1, radon: 1 }
+      },
+      {
+        id: '5b',
+        text: 'Estrés / fatiga crónica / insomnio',
+        weights: { simple: 1, radon: 1, carbonated: 1 }
+      },
+      {
+        id: '5c',
+        text: 'Mala circulación / sensación de frío',
+        weights: { chloride: 1, carbonated: 1, ferruginous: 1 }
+      },
+      {
+        id: '5d',
+        text: 'Recuperación post esfuerzo físico / deporte',
+        weights: { chloride: 1, carbonated: 1 }
+      }
+    ]
+  },
+  {
+    id: 6,
+    text: '¿Tienes alguna condición específica que quieras mejorar?',
+    description: '特定適応症 - Esta es la pregunta más importante para el diagnóstico',
+    options: [
+      {
+        id: '6a',
+        text: 'Piel sensible/irritada o con acné',
+        weights: { acidic: 1, sulfur: 1, sulfate: 1 },
+        hardBoost: { acidic: 0.2, sulfur: 0.1 }
+      },
+      {
+        id: '6b',
+        text: 'Piel seca / eczema',
+        weights: { bicarbonate: 1, simple: 1 }
+      },
+      {
+        id: '6c',
+        text: 'Circulación / presión baja / anemia',
+        weights: { ferruginous: 1, alkaline: 1, carbonated: 1 }
+      },
+      {
+        id: '6d',
+        text: 'Estrés nervioso / menopausia / equilibrio hormonal',
+        weights: { radon: 1, simple: 1 }
+      },
+      {
+        id: '6e',
+        text: 'Problemas digestivos leves',
+        weights: { sulfate: 1, bicarbonate: 1 }
+      },
+      {
+        id: '6f',
+        text: 'Ninguna en especial, solo relajarme',
+        weights: {}
       }
     ]
   }

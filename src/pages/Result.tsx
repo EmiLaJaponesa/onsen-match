@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { OnsenType } from '@/types/onsen';
 import { useOnsenResult } from '@/hooks/useOnsenResult';
+import { useOnsenDiagnosis } from '@/hooks/useOnsenDiagnosis';
 import { ScrollProgress } from '@/components/result/ScrollProgress';
 import { ShareButton } from '@/components/result/ShareButton';
 import { ResultHero } from '@/components/result/ResultHero';
@@ -14,12 +15,16 @@ import { ResultCTA } from '@/components/result/ResultCTA';
 import { FAQSection } from '@/components/result/FAQSection';
 import { Footer } from '@/components/layout/Footer';
 import { RelatedTypesSection } from '@/components/result/RelatedTypesSection';
+import { ConfidenceBadge } from '@/components/result/ConfidenceBadge';
+import { AlternativeType } from '@/components/result/AlternativeType';
 import { EXTERNAL_LINKS } from '@/constants/app';
+import { onsenResults } from '@/data/onsenTypes';
 
 const Result = () => {
   const { type } = useParams<{ type: OnsenType }>();
   const navigate = useNavigate();
   const { result, image } = useOnsenResult(type);
+  const { confidence, alternativeType, alternativeScore, isLoading } = useOnsenDiagnosis(type);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,6 +57,16 @@ const Result = () => {
             />
 
             <CardContent className="p-8 md:p-12 space-y-10">
+              {/* Confidence Badge */}
+              {!isLoading && confidence && (
+                <div className="flex justify-center animate-fade-in">
+                  <ConfidenceBadge 
+                    level={confidence} 
+                    score={confidence === 'high' ? 85 : confidence === 'medium' ? 67 : 55} 
+                  />
+                </div>
+              )}
+
               <ResultDescription description={result.description} />
               
               <ResultCharacteristics 
@@ -60,6 +75,15 @@ const Result = () => {
                 idealFor={result.idealFor}
                 experience={result.experience}
               />
+
+              {/* Alternative Type */}
+              {!isLoading && alternativeType && alternativeScore && (
+                <AlternativeType 
+                  type={alternativeType}
+                  score={alternativeScore}
+                  result={onsenResults[alternativeType]}
+                />
+              )}
 
               <ResultDestinations destinations={result.destinations} />
 

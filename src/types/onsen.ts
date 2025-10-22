@@ -21,6 +21,7 @@ export interface QuestionOption {
   id: string;
   text: string;
   weights: Partial<Record<OnsenType, number>>;
+  hardBoost?: Partial<Record<OnsenType, number>>;
 }
 
 export interface OnsenDestination {
@@ -41,6 +42,21 @@ export interface OnsenResult {
   experience: string;
   description: string;
   destinations: OnsenDestination[];
+}
+
+export interface HardBoostRule {
+  questionId: number;
+  optionId: string;
+  boosts: Partial<Record<OnsenType, number>>;
+}
+
+export interface DiagnosisResult {
+  primaryType: OnsenType;
+  primaryScore: number;
+  alternativeType?: OnsenType;
+  alternativeScore?: number;
+  confidence: 'high' | 'medium' | 'exploratory';
+  allScores: Record<OnsenType, number>;
 }
 
 export type QuizAnswers = Record<number, string>;

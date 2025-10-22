@@ -51,12 +51,18 @@ export async function saveQuizAnswer(
 }
 
 /**
- * Save the final quiz result to the database
+ * Save the final quiz result to the database with diagnosis details
  */
 export async function saveQuizResult(
   onsenType: OnsenType,
   answers: QuizAnswers,
-  timeSpentSeconds?: number | null
+  timeSpentSeconds?: number | null,
+  diagnosisData?: {
+    alternativeType?: OnsenType;
+    alternativeScore?: number;
+    confidence?: 'high' | 'medium' | 'exploratory';
+    allScores?: Record<OnsenType, number>;
+  }
 ): Promise<{ success: boolean; error?: string }> {
   try {
     // Validate onsen type
@@ -93,6 +99,10 @@ export async function saveQuizResult(
         time_spent_seconds: timeSpentSeconds,
         device_type: getDeviceType(),
         referrer_domain: getReferrerDomain(),
+        alternative_type: diagnosisData?.alternativeType,
+        alternative_percentage: diagnosisData?.alternativeScore,
+        confidence_level: diagnosisData?.confidence,
+        raw_scores: diagnosisData?.allScores,
       });
 
     if (error) {
