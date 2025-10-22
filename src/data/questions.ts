@@ -3,17 +3,17 @@ import { Question } from "@/types/onsen";
 export const questions: Question[] = [
   {
     id: 1,
-    text: "¿Qué te gustaría mejorar hoy?",
-    description: "Elige el objetivo principal de tu visita al onsen",
+    text: "¿Qué te gustaría sentir después del onsen?",
+    description: "Elige lo que más deseas obtener de esta experiencia.",
     options: [
       {
         id: "1a",
-        text: "Relajar cuerpo y mente",
+        text: "Relajar mi cuerpo y calmar la mente",
         weights: { simple: 1, radon: 1 },
       },
       {
         id: "1b",
-        text: "Mejorar circulación y aliviar músculos",
+        text: "Mejorar la circulación y aliviar el cansancio muscular",
         weights: { carbonated: 1, chloride: 1 },
       },
       {
@@ -23,69 +23,69 @@ export const questions: Question[] = [
       },
       {
         id: "1d",
-        text: "Purificar la piel / controlar acné",
+        text: "Purificar mi piel y reducir el acné",
         weights: { acidic: 1, sulfur: 1 },
       },
       {
         id: "1e",
-        text: "Recuperar energía / anemia",
+        text: "Recuperar energía y vitalidad",
         weights: { ferruginous: 1, alkaline: 1 },
       },
     ],
   },
   {
     id: 2,
-    text: "¿Cómo prefieres que se sienta el agua?",
-    description: "La textura del agua afecta tu experiencia",
+    text: "¿Cómo te gusta que se sienta el agua termal?",
+    description: "La textura del agua influye en tu sensación de descanso.",
     options: [
       {
         id: "2a",
-        text: "Ligera y sedosa",
+        text: "Ligera y sedosa, como una caricia",
         weights: { simple: 1, bicarbonate: 1 },
       },
       {
         id: "2b",
-        text: "Con burbujas / efervescente",
+        text: "Con burbujas suaves, como un baño efervescente",
         weights: { carbonated: 1 },
         hardBoost: { carbonated: 0.3 },
       },
       {
         id: "2c",
-        text: "Densa y salada, que conserve el calor",
+        text: "Densa y salada, que mantiene el calor",
         weights: { chloride: 1 },
       },
       {
         id: "2d",
-        text: 'Mineral marcada, más "consistente"',
+        text: "Más mineral, con textura consistente",
         weights: { sulfate: 1, ferruginous: 1 },
       },
     ],
   },
   {
     id: 3,
-    text: "¿Qué aromas minerales toleras o disfrutas?",
-    description: "Algunos onsens tienen aromas característicos",
+    text: "¿Qué aroma te llama la atención en un baño termal?",
+    description: "El olor natural del agua mineral puede transformar la experiencia.",
     options: [
       {
         id: "3a",
-        text: "Neutro (sin olor fuerte)",
+        text: "Suave y neutro, sin olor fuerte",
         weights: { simple: 1, radon: 1, bicarbonate: 1 },
       },
       {
         id: "3b",
-        text: "Volcánico / azufrado",
+        text: "Volcánico o con aroma a azufre",
         weights: { sulfur: 1 },
         hardBoost: { sulfur: 0.3 },
       },
       {
         id: "3c",
-        text: "Metálico / hierro",
+        text: "Metálico, como el hierro natural",
         weights: { ferruginous: 1 },
         hardBoost: { ferruginous: 0.3 },
       },
       {
         id: "3d",
-        text: "Marino / yodado",
+        text: "Marino, con un toque salino o yodado",
         weights: { chloride: 1, alkaline: 1 },
         hardBoost: { alkaline: 0.2 },
       },
@@ -93,92 +93,92 @@ export const questions: Question[] = [
   },
   {
     id: 4,
-    text: "¿Cómo está tu piel hoy?",
-    description: "El tipo de agua puede mejorar tu condición de piel",
+    text: "¿Cómo describirías tu piel hoy?",
+    description: "El tipo de agua puede equilibrar y cuidar tu piel.",
     options: [
       {
         id: "4a",
-        text: "Seca / sensible",
+        text: "Sensible o un poco seca",
         weights: { simple: 1, bicarbonate: 1 },
       },
       {
         id: "4b",
-        text: "Grasa / acné (puedo tolerar más intensidad)",
+        text: "Grasa o con tendencia al acné",
         weights: { acidic: 1, sulfur: 1 },
       },
       {
         id: "4c",
-        text: "Con pequeñas heridas / cicatrización",
+        text: "Con pequeñas heridas o necesita cicatrizar",
         weights: { sulfate: 1 },
       },
       {
         id: "4d",
-        text: "Normal; busco confort y calidez",
+        text: "Normal, solo busco confort y calidez",
         weights: { chloride: 1, radon: 1 },
       },
     ],
   },
   {
     id: 5,
-    text: "¿Qué molestias físicas te gustaría aliviar?",
-    description: "Beneficios generales del onsen",
+    text: "¿Qué parte de tu cuerpo necesita más alivio?",
+    description: "Los onsen ofrecen beneficios naturales para distintas molestias.",
     options: [
       {
         id: "5a",
-        text: "Dolor muscular o articular",
+        text: "Músculos o articulaciones cansadas",
         weights: { chloride: 1, carbonated: 1, radon: 1 },
       },
       {
         id: "5b",
-        text: "Estrés / fatiga crónica / insomnio",
+        text: "Estrés, tensión o dificultad para dormir",
         weights: { simple: 1, radon: 1, carbonated: 1 },
       },
       {
         id: "5c",
-        text: "Mala circulación / sensación de frío",
+        text: "Mala circulación o sensación de frío",
         weights: { chloride: 1, carbonated: 1, ferruginous: 1 },
       },
       {
         id: "5d",
-        text: "Recuperación post esfuerzo físico / deporte",
+        text: "Recuperación después de hacer ejercicio",
         weights: { chloride: 1, carbonated: 1 },
       },
     ],
   },
   {
     id: 6,
-    text: "¿Tienes alguna condición específica que quieras mejorar?",
-    description: "Esta es la última pregunta para el diagnóstico",
+    text: "¿Hay algo específico que te gustaría mejorar en tu bienestar?",
+    description: "Esta es la última pregunta, para ajustar tu tipo de onsen ideal.",
     options: [
       {
         id: "6a",
-        text: "Piel sensible/irritada o con acné",
+        text: "Piel sensible, irritada o con acné",
         weights: { acidic: 1, sulfur: 1, sulfate: 1 },
         hardBoost: { acidic: 0.2, sulfur: 0.1 },
       },
       {
         id: "6b",
-        text: "Piel seca / eczema",
+        text: "Piel seca o con eczema",
         weights: { bicarbonate: 1, simple: 1 },
       },
       {
         id: "6c",
-        text: "Circulación / presión baja / anemia",
+        text: "Problemas de circulación o presión baja",
         weights: { ferruginous: 1, alkaline: 1, carbonated: 1 },
       },
       {
         id: "6d",
-        text: "Estrés nervioso / menopausia / equilibrio hormonal",
+        text: "Estrés nervioso o cambios hormonales",
         weights: { radon: 1, simple: 1 },
       },
       {
         id: "6e",
-        text: "Problemas digestivos leves",
+        text: "Malestares digestivos leves",
         weights: { sulfate: 1, bicarbonate: 1 },
       },
       {
         id: "6f",
-        text: "Ninguna en especial, solo relajarme",
+        text: "Ninguno en especial, solo relajarme",
         weights: {},
       },
     ],
