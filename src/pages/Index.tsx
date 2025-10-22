@@ -16,10 +16,14 @@ const Index = () => {
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Hero Background with Enhanced Overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${onsenHero})` }}
-        >
+        <div className="absolute inset-0">
+          <img 
+            src={onsenHero} 
+            alt="Japanese Onsen"
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </div>
 
