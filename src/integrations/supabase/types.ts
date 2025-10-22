@@ -50,6 +50,30 @@ export type Database = {
         }
         Relationships: []
       }
+      onsen_type_frequency: {
+        Row: {
+          frequency: number | null
+          id: string
+          onsen_type: string
+          result_count: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          frequency?: number | null
+          id?: string
+          onsen_type: string
+          result_count?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          frequency?: number | null
+          id?: string
+          onsen_type?: string
+          result_count?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       quiz_attempts: {
         Row: {
           created_at: string
@@ -76,37 +100,52 @@ export type Database = {
       }
       quiz_results: {
         Row: {
+          alternative_percentage: number | null
+          alternative_type: string | null
           answers: Json
           completed_at: string | null
+          confidence_level: string | null
           created_at: string
           device_type: string | null
           id: string
           onsen_type: string
+          raw_scores: Json | null
           referrer_domain: string | null
           session_id: string
           time_spent_seconds: number | null
+          top_percentage: number | null
         }
         Insert: {
+          alternative_percentage?: number | null
+          alternative_type?: string | null
           answers: Json
           completed_at?: string | null
+          confidence_level?: string | null
           created_at?: string
           device_type?: string | null
           id?: string
           onsen_type: string
+          raw_scores?: Json | null
           referrer_domain?: string | null
           session_id: string
           time_spent_seconds?: number | null
+          top_percentage?: number | null
         }
         Update: {
+          alternative_percentage?: number | null
+          alternative_type?: string | null
           answers?: Json
           completed_at?: string | null
+          confidence_level?: string | null
           created_at?: string
           device_type?: string | null
           id?: string
           onsen_type?: string
+          raw_scores?: Json | null
           referrer_domain?: string | null
           session_id?: string
           time_spent_seconds?: number | null
+          top_percentage?: number | null
         }
         Relationships: []
       }
