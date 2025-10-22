@@ -58,9 +58,9 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
         description: 'Conocida como "agua de belleza"; piel sedosa.',
       },
       {
-        name: "Hirayu Onsen",
-        kanji: "平湯温泉",
-        location: "Gifu",
+        name: "Beppu Onsen",
+        kanji: "別府温泉",
+        location: "Oita",
         description: "Transparente y amable con la piel; descanso en valle sereno.",
       },
       {
@@ -70,10 +70,10 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
         description: "Tradición de belleza y artes; baños que suavizan la piel.",
       },
       {
-        name: "Beppu Onsen",
-        kanji: "別府温泉",
-        location: "Oita",
-        description: "Tradición de belleza y artes; baños que suavizan la piel.",
+        name: "Hirayu Onsen",
+        kanji: "平湯温泉",
+        location: "Gifu",
+        description: "Un pueblo tradicional japonés; purificación intensa.",
       },
     ],
   },
@@ -90,10 +90,10 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
       "Con su aroma característico, esta agua ayuda a revitalizar el cuerpo y mejorar la circulación. Ideal para quienes buscan energía renovada y limpiar la piel profundamente.",
     destinations: [
       {
-        name: "Manza Onsen",
-        kanji: "万座温泉",
+        name: "Kusatsu Onsen",
+        kanji: "草津温泉",
         location: "Gunma",
-        description: "Famosa por su concentración del mineral.",
+        description: 'Famosa por su "yubatake"; purificación intensa.',
       },
       {
         name: "Zao Onsen",
@@ -176,7 +176,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
         name: "Shima Onsen",
         kanji: "四万温泉",
         location: "Gunma",
-        description: "Hay una creencia; agua bendita para curar 40,000 enfermedades.",
+        description: "Transparente y amable con la piel; descanso en valle sereno.",
       },
     ],
   },
