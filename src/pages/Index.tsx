@@ -17,8 +17,8 @@ const Index = () => {
       <div className="relative overflow-hidden">
         {/* Hero Background with Enhanced Overlay */}
         <div className="absolute inset-0">
-          <img 
-            src={onsenHero} 
+          <img
+            src={onsenHero}
             alt="Japanese Onsen"
             className="w-full h-full object-cover"
             fetchPriority="high"
@@ -44,7 +44,7 @@ const Index = () => {
                 className="text-2xl md:text-3xl text-white/95 mb-16 animate-fade-in font-light leading-relaxed max-w-3xl mx-auto"
                 style={{ animationDelay: "0.2s" }}
               >
-                Tu guía con IA te propone tu próximo destino en Japón para tu bienestar
+                Onsen Match te propone tu próximo destino en Japón para tu bienestar
               </p>
 
               {/* CTA Button */}
@@ -54,18 +54,18 @@ const Index = () => {
                 style={{ animationDelay: "0.4s" }}
                 onClick={() => navigate("/quiz")}
               >
-                Quiero explorar mi Onsen ideal
+                Quiero explorar mi onsen ideal
               </Button>
             </main>
           </div>
         </div>
       </div>
 
-      {/* Service Features Section */}
-      <ServiceFeaturesSection />
-
       {/* Onsen Stats Section */}
       <OnsenStatsSection />
+
+      {/* Service Features Section */}
+      <ServiceFeaturesSection />
 
       {/* Onsen Types Preview Section */}
       <OnsenTypesPreview />
