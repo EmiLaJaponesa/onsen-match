@@ -16,7 +16,7 @@ export async function saveQuizAnswer(
       return { success: false, error: 'Invalid option selected' };
     }
     
-    if (questionId < 1 || questionId > 10) {
+    if (questionId < 1 || questionId > 6) {
       return { success: false, error: 'Invalid question ID' };
     }
 
@@ -67,7 +67,7 @@ export async function saveQuizResult(
   try {
     // Validate onsen type
     const validOnsenTypes: OnsenType[] = [
-      'simple', 'alkaline', 'chloride', 'sulfur', 'carbonated',
+      'simple', 'yodo', 'chloride', 'sulfur', 'carbonated',
       'ferruginous', 'sulfate', 'acidic', 'radon', 'bicarbonate'
     ];
     

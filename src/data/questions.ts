@@ -29,7 +29,7 @@ export const questions: Question[] = [
       {
         id: "1e",
         text: "Recuperar energía y vitalidad",
-        weights: { ferruginous: 1, alkaline: 1 },
+        weights: { ferruginous: 1, yodo: 1 },
       },
     ],
   },
@@ -86,8 +86,8 @@ export const questions: Question[] = [
       {
         id: "3d",
         text: "Marino, con un toque salino o yodado",
-        weights: { chloride: 1, alkaline: 1 },
-        hardBoost: { alkaline: 0.2 },
+        weights: { chloride: 1, yodo: 1 },
+        hardBoost: { yodo: 0.2 },
       },
     ],
   },
@@ -164,7 +164,7 @@ export const questions: Question[] = [
       {
         id: "6c",
         text: "Problemas de circulación o presión baja",
-        weights: { ferruginous: 1, alkaline: 1, carbonated: 1 },
+        weights: { ferruginous: 1, yodo: 1, carbonated: 1 },
       },
       {
         id: "6d",

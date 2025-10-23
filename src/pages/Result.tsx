@@ -1,10 +1,11 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { OnsenType } from '@/types/onsen';
 import { useOnsenResult } from '@/hooks/useOnsenResult';
 import { useOnsenDiagnosis } from '@/hooks/useOnsenDiagnosis';
+import { normalizeOnsenType } from '@/utils/onsenTypeMapper';
 import { ScrollProgress } from '@/components/result/ScrollProgress';
 import { ShareButton } from '@/components/result/ShareButton';
 import { ResultHero } from '@/components/result/ResultHero';
@@ -19,10 +20,13 @@ import { ConfidenceBadge } from '@/components/result/ConfidenceBadge';
 import { AlternativeType } from '@/components/result/AlternativeType';
 import { EXTERNAL_LINKS } from '@/constants/app';
 import { onsenResults } from '@/data/onsenTypes';
+import { ResultCard } from '@/components/layout/ResultCard';
+import { Container } from '@/components/layout/Container';
 
 const Result = () => {
-  const { type } = useParams<{ type: OnsenType }>();
+  const { type: rawType } = useParams<{ type: string }>();
   const navigate = useNavigate();
+  const type = normalizeOnsenType(rawType) as OnsenType;
   const { result, image } = useOnsenResult(type);
   const { confidence, alternativeType, alternativeScore, isLoading } = useOnsenDiagnosis(type);
 
@@ -46,65 +50,56 @@ const Result = () => {
       <ScrollProgress />
       <ShareButton title={result.title} />
 
-      <div className="py-12 md:py-20">
-        <div className="container mx-auto px-4 pb-24 md:pb-4">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <Card className="shadow-2xl border border-white/20 animate-fade-in overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 transition-all duration-300">
-            <ResultHero 
-              image={image}
-              title={result.title}
-              japaneseTitle={result.japaneseTitle}
-            />
+      <Container className="pb-24 md:pb-4">
+        <ResultCard>
+          <ResultHero 
+            image={image}
+            title={result.title}
+            japaneseTitle={result.japaneseTitle}
+          />
 
-            <CardContent className="p-8 md:p-12 space-y-10">
-              {/* Confidence Badge */}
-              {!isLoading && confidence && (
-                <div className="flex justify-center animate-fade-in">
-                  <ConfidenceBadge 
-                    level={confidence} 
-                    score={confidence === 'high' ? 85 : confidence === 'medium' ? 67 : 55} 
-                  />
-                </div>
-              )}
-
-              <ResultDescription description={result.description} />
-              
-              <ResultCharacteristics 
-                characteristics={result.characteristics}
-                effects={result.effects}
-                idealFor={result.idealFor}
-                experience={result.experience}
+          {/* Confidence Badge */}
+          {!isLoading && confidence && (
+            <div className="flex justify-center animate-fade-in">
+              <ConfidenceBadge 
+                level={confidence} 
+                score={confidence === 'high' ? 85 : confidence === 'medium' ? 67 : 55} 
               />
+            </div>
+          )}
 
-              {/* Alternative Type */}
-              {!isLoading && alternativeType && alternativeScore && (
-                <AlternativeType 
-                  type={alternativeType}
-                  score={alternativeScore}
-                  result={onsenResults[alternativeType]}
-                />
-              )}
+          <ResultDescription description={result.description} />
+          
+          <ResultCharacteristics 
+            characteristics={result.characteristics}
+            effects={result.effects}
+            idealFor={result.idealFor}
+            experience={result.experience}
+          />
 
-              <ResultDestinations destinations={result.destinations} />
+          {/* Alternative Type */}
+          {!isLoading && alternativeType && alternativeScore && (
+            <AlternativeType 
+              type={alternativeType}
+              score={alternativeScore}
+              result={onsenResults[alternativeType]}
+            />
+          )}
 
-              <ResultCTA onsenType={result.title.split(' – ')[0]} />
+          <ResultDestinations destinations={result.destinations} />
+          <ResultCTA onsenType={result.title.split(' – ')[0]} />
+          <RelatedTypesSection currentType={result.type} />
+          <FAQSection />
 
-              <RelatedTypesSection currentType={result.type} />
-
-              <FAQSection />
-
-              <div className="text-center pt-6">
-                <Link to="/" className="inline-block">
-                  <Button variant="outline" size="lg">
-                    Volver al inicio
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-      </div>
+          <div className="text-center pt-6">
+            <Link to="/" className="inline-block">
+              <Button variant="outline" size="lg">
+                Volver al inicio
+              </Button>
+            </Link>
+          </div>
+        </ResultCard>
+      </Container>
 
       {/* Mobile Sticky CTA Bar */}
       <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur-lg border-t border-border p-4 z-40 md:hidden shadow-2xl">

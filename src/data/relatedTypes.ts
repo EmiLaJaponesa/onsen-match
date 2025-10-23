@@ -11,7 +11,7 @@ export const relatedOnsenTypes: Record<OnsenType, RelatedType[]> = {
     { type: 'sulfate', reason: 'Excelente para recuperación muscular y circulación' }
   ],
   bicarbonate: [
-    { type: 'alkaline', reason: 'Ambas son conocidas por sus efectos embellecedores' },
+    { type: 'yodo', reason: 'Ambas son conocidas por sus efectos embellecedores' },
     { type: 'simple', reason: 'Suave con la piel, ideal para pieles sensibles' }
   ],
   sulfur: [
@@ -28,7 +28,7 @@ export const relatedOnsenTypes: Record<OnsenType, RelatedType[]> = {
   ],
   simple: [
     { type: 'bicarbonate', reason: 'Belleza natural sin estímulos fuertes' },
-    { type: 'alkaline', reason: 'Piel sedosa con suavidad extrema' }
+    { type: 'yodo', reason: 'Piel sedosa con suavidad extrema' }
   ],
   ferruginous: [
     { type: 'chloride', reason: 'Retención de calor y bienestar duradero' },
@@ -41,6 +41,10 @@ export const relatedOnsenTypes: Record<OnsenType, RelatedType[]> = {
   radon: [
     { type: 'carbonated', reason: 'Estimulación metabólica y relajación' },
     { type: 'simple', reason: 'Descanso profundo sin estímulos fuertes' }
+  ],
+  yodo: [
+    { type: 'bicarbonate', reason: 'Hermanas de la belleza natural' },
+    { type: 'simple', reason: 'Suavidad equilibrada para todo tipo de piel' }
   ],
   alkaline: [
     { type: 'bicarbonate', reason: 'Hermanas de la belleza natural' },

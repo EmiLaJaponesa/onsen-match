@@ -11,7 +11,7 @@ export const hardBoostRules: HardBoostRule[] = [
   // Q3: Strong mineral aromas are key identifiers
   { questionId: 3, optionId: '3b', boosts: { sulfur: 0.3 } },
   { questionId: 3, optionId: '3c', boosts: { ferruginous: 0.3 } },
-  { questionId: 3, optionId: '3d', boosts: { alkaline: 0.2 } },
+  { questionId: 3, optionId: '3d', boosts: { yodo: 0.2 } },
   
   // Q6: Specific medical indications (most important)
   { questionId: 6, optionId: '6a', boosts: { acidic: 0.2, sulfur: 0.1 } },

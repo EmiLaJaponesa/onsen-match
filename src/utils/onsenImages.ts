@@ -8,7 +8,7 @@ import simpleImg from '@/assets/onsen-simple.jpg';
 import ferruginousImg from '@/assets/onsen-ferruginous.jpg';
 import acidicImg from '@/assets/onsen-acidic.jpg';
 import radonImg from '@/assets/onsen-radon.jpg';
-import alkalineImg from '@/assets/onsen-alkaline.jpg';
+import yodoImg from '@/assets/onsen-yodo.jpg';
 
 export const onsenImages: Record<OnsenType, string> = {
   chloride: chlorideImg,
@@ -20,5 +20,6 @@ export const onsenImages: Record<OnsenType, string> = {
   ferruginous: ferruginousImg,
   acidic: acidicImg,
   radon: radonImg,
-  alkaline: alkalineImg,
+  yodo: yodoImg,
+  alkaline: yodoImg, // deprecated, use 'yodo' instead
 };

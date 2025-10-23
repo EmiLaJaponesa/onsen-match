@@ -178,6 +178,23 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Mobile Touch Target Optimization */
+  .touch-target {
+    min-height: 44px; /* iOS minimum touch target */
+    min-width: 44px;
+  }
+  
+  .safe-area-inset {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Disable hover effects on touch devices */
+  .touch-device .hover\:scale-105:hover,
+  .touch-device .hover-scale:hover,
+  .touch-device .hover-lift:hover {
+    transform: none;
+  }
+  
   /* Glassmorphism Utilities */
   .glass-card {
     @apply backdrop-blur-xl border rounded-2xl;

@@ -345,6 +345,44 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
       },
     ],
   },
+  yodo: {
+    type: "yodo",
+    title: "Yodada – Piel sedosa",
+    japaneseTitle: "含よう素泉",
+    emoji: "💎",
+    characteristics: 'Conocida como "agua de belleza natural".',
+    effects: "Antiséptica; apoyo a piel con tendencia a infecciones; coadyuvante en circulación.",
+    idealFor: "Personas con piel seca o quienes buscan un efecto rejuvenecedor.",
+    experience: "Deja la piel como seda. Es el secreto de la piel japonesa luminosa.",
+    description:
+      "Suaviza la piel como ninguna otra agua, dejándola hidratada y con una textura sedosa. Ideal para quienes buscan el máximo cuidado de la piel.",
+    destinations: [
+      {
+        name: "Shirako Onsen",
+        kanji: "白子温泉",
+        location: "Chiba",
+        description: "Cerca del oceano pacífico; suavidad excepcional.",
+      },
+      {
+        name: "Otemachi Onsen",
+        kanji: "大手町温泉",
+        location: "Tokio",
+        description: 'Conocida como "agua de belleza"; piel sedosa.',
+      },
+      {
+        name: "Koyasu Onsen",
+        kanji: "子安温泉",
+        location: "Nagano",
+        description: "Tradición de belleza; regeneración de piel.",
+      },
+      {
+        name: "Senagajima Onsen",
+        kanji: "瀬長島温泉",
+        location: "Okinawa",
+        description: "Fácil acceso desde el aeropuerto de Naha; ambiente tropical.",
+      },
+    ],
+  },
   alkaline: {
     type: "alkaline",
     title: "Yodada – Piel sedosa",
@@ -352,7 +390,7 @@ export const onsenResults: Record<OnsenType, OnsenResult> = {
     emoji: "💎",
     characteristics: 'Conocida como "agua de belleza natural".',
     effects: "Antiséptica; apoyo a piel con tendencia a infecciones; coadyuvante en circulación.",
-    idealFor: "Personas con piel seca o quienes buscan un efeLicto rejuvenecedor.",
+    idealFor: "Personas con piel seca o quienes buscan un efecto rejuvenecedor.",
     experience: "Deja la piel como seda. Es el secreto de la piel japonesa luminosa.",
     description:
       "Suaviza la piel como ninguna otra agua, dejándola hidratada y con una textura sedosa. Ideal para quienes buscan el máximo cuidado de la piel.",

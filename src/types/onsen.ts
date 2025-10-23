@@ -8,7 +8,8 @@ export type OnsenType =
   | 'ferruginous'
   | 'acidic'
   | 'radon'
-  | 'alkaline';
+  | 'yodo'
+  | 'alkaline'; // deprecated, use 'yodo' instead
 
 export interface Question {
   id: number;

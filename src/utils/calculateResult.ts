@@ -11,7 +11,7 @@ const QUESTION_WEIGHTS = [0.15, 0.10, 0.10, 0.15, 0.20, 0.30];
 
 const ALL_TYPES: OnsenType[] = [
   'simple', 'chloride', 'bicarbonate', 'sulfate', 'carbonated',
-  'ferruginous', 'acidic', 'alkaline', 'sulfur', 'radon'
+  'ferruginous', 'acidic', 'yodo', 'sulfur', 'radon'
 ];
 
 /**
@@ -131,7 +131,7 @@ export async function calculateOnsenType(answers: QuizAnswers): Promise<Diagnosi
     
     Object.keys(q6Option.weights).forEach(type => {
       const t = type as OnsenType;
-      if (totalScores[t] >= topScore * 0.9 && totalScores[t] <= topScore * 1.0) {
+      if (totalScores[t] >= topScore * 0.9 && totalScores[t] < topScore) {
         totalScores[t] += 0.05;
       }
     });
