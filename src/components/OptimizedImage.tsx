@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -19,43 +19,41 @@ export const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>('');
 
-  // Check WebP support
-  const supportsWebP = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    if (canvas.getContext?.('2d')) {
-      return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+  useEffect(() => {
+    if (priority) {
+      setImageSrc(src);
+    } else {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setImageSrc(src);
     }
-    return false;
-  }, []);
+  }, [src, priority]);
 
   if (error) {
     return (
       <div className={`w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center ${className}`}>
-        <span className="text-4xl">{fallbackIcon}</span>
+        <span className="text-4xl" role="img" aria-label="Onsen icon">
+          {fallbackIcon}
+        </span>
       </div>
     );
   }
 
   return (
-    <picture>
-      {supportsWebP && (
-        <source 
-          srcSet={src.replace(/\.(jpg|jpeg|png)$/, '.webp')} 
-          type="image/webp" 
-        />
-      )}
-      <img 
-        src={src}
-        alt={alt}
-        sizes={sizes}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setError(true)}
-        className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        {...props}
-      />
-    </picture>
+    <img 
+      src={imageSrc}
+      alt={alt}
+      sizes={sizes}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      onLoad={() => setIsLoaded(true)}
+      onError={() => setError(true)}
+      className={`${className} transition-opacity duration-300 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
+      {...props}
+    />
   );
 };

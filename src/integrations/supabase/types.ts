@@ -50,6 +50,36 @@ export type Database = {
         }
         Relationships: []
       }
+      onsen_type_config: {
+        Row: {
+          display_order: number
+          image_url: string
+          is_active: boolean | null
+          subtitle: string
+          title: string
+          type: string
+          updated_at: string | null
+        }
+        Insert: {
+          display_order: number
+          image_url: string
+          is_active?: boolean | null
+          subtitle: string
+          title: string
+          type: string
+          updated_at?: string | null
+        }
+        Update: {
+          display_order?: number
+          image_url?: string
+          is_active?: boolean | null
+          subtitle?: string
+          title?: string
+          type?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       onsen_type_frequency: {
         Row: {
           frequency: number | null

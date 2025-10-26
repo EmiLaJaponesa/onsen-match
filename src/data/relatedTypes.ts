@@ -45,9 +45,5 @@ export const relatedOnsenTypes: Record<OnsenType, RelatedType[]> = {
   yodo: [
     { type: 'bicarbonate', reason: 'Hermanas de la belleza natural' },
     { type: 'simple', reason: 'Suavidad equilibrada para todo tipo de piel' }
-  ],
-  alkaline: [
-    { type: 'bicarbonate', reason: 'Hermanas de la belleza natural' },
-    { type: 'simple', reason: 'Suavidad equilibrada para todo tipo de piel' }
   ]
 };

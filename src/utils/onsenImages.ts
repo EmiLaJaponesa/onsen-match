@@ -20,6 +20,5 @@ export const onsenImages: Record<OnsenType, string> = {
   ferruginous: ferruginousImg,
   acidic: acidicImg,
   radon: radonImg,
-  yodo: yodoImg,
-  alkaline: yodoImg, // deprecated, use 'yodo' instead
+  yodo: yodoImg
 };

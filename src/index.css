@@ -186,6 +186,14 @@ All colors MUST be HSL.
   
   .safe-area-inset {
     padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Prevent overscroll bounce on iOS */
+  .prevent-overscroll {
+    overscroll-behavior: none;
   }
   
   /* Disable hover effects on touch devices */
@@ -193,6 +201,13 @@ All colors MUST be HSL.
   .touch-device .hover-scale:hover,
   .touch-device .hover-lift:hover {
     transform: none;
+  }
+  
+  /* Improved touch device detection */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover {
+      transform: none;
+    }
   }
   
   /* Glassmorphism Utilities */
