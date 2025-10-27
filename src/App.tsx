@@ -6,12 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { trackUTMParams, trackScrollDepth, trackPageView } from "./utils/analytics";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { AdminRoute } from "./components/admin/AdminRoute";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const Result = lazy(() => import("./pages/Result"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminOnsenImages = lazy(() => import("./pages/AdminOnsenImages"));
 
 // Loading spinner component
 const LoadingSpinner = () => (
@@ -67,6 +69,15 @@ const App = () => {
                 <Route path="/result/:type" element={<Result />} />
                 {/* Redirect legacy alkaline route to yodo */}
                 <Route path="/result/alkaline" element={<Navigate to="/result/yodo" replace />} />
+                {/* Admin route */}
+                <Route 
+                  path="/admin/onsen-images" 
+                  element={
+                    <AdminRoute>
+                      <AdminOnsenImages />
+                    </AdminRoute>
+                  } 
+                />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
