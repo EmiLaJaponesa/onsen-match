@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
 import { uploadOnsenImage } from '@/utils/uploadOnsenImage';
-import { Loader2, Check, AlertCircle } from 'lucide-react';
+import { Loader2, Check, AlertCircle, Upload } from 'lucide-react';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
 interface OnsenImageUploadCardProps {
@@ -71,18 +71,18 @@ export const OnsenImageUploadCard = ({
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow touch-manipulation">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg flex items-center justify-between">
-          <span>{title}</span>
+        <CardTitle className="text-base sm:text-lg flex items-center justify-between gap-2">
+          <span className="truncate">{title}</span>
           {uploadStatus === 'success' && (
-            <Check className="h-5 w-5 text-green-500 animate-in fade-in" />
+            <Check className="h-5 w-5 text-green-500 animate-in fade-in flex-shrink-0" />
           )}
           {uploadStatus === 'error' && (
-            <AlertCircle className="h-5 w-5 text-red-500 animate-in fade-in" />
+            <AlertCircle className="h-5 w-5 text-red-500 animate-in fade-in flex-shrink-0" />
           )}
         </CardTitle>
-        <p className="text-sm text-muted-foreground">{subtitle}</p>
+        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-1">{subtitle}</p>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* 現在の画像プレビュー */}
@@ -112,28 +112,39 @@ export const OnsenImageUploadCard = ({
           )}
         </div>
 
-        {/* アップロードボタン */}
+        {/* アップロードボタン - モバイル最適化 */}
         <div className="space-y-2">
+          <label 
+            htmlFor={`file-upload-${type}`}
+            className="flex items-center justify-center w-full h-12 px-4 bg-primary text-primary-foreground rounded-md cursor-pointer hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+            style={{ minHeight: '44px' }}
+          >
+            <Upload className="mr-2 h-5 w-5" />
+            <span className="text-sm font-medium">
+              {uploading ? 'アップロード中...' : 'ファイルを選択'}
+            </span>
+          </label>
           <Input
+            id={`file-upload-${type}`}
             type="file"
             accept="image/jpeg,image/png,image/webp"
             onChange={handleFileChange}
             disabled={uploading}
-            className="cursor-pointer file:cursor-pointer"
+            className="sr-only"
           />
           
           {uploading && (
             <div className="space-y-2">
               <Progress value={uploadProgress} className="h-2" />
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <span>アップロード中... {uploadProgress}%</span>
               </div>
             </div>
           )}
 
-          <p className="text-xs text-muted-foreground">
-            推奨: JPEG/PNG/WebP、最大5MB、400x400px以上
+          <p className="text-xs text-muted-foreground text-center">
+            JPEG/PNG/WebP、最大5MB、400x400px以上
           </p>
         </div>
       </CardContent>

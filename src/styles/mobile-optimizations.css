@@ -1,0 +1,49 @@
+/* モバイルタッチ最適化 */
+@media (max-width: 768px) {
+  /* タップ領域の拡大 */
+  button, a, input[type="file"], label[for] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* スクロールの慣性（iOS向け） */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* タップハイライト無効化（独自のフィードバックを使用） */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* フォーカス時のズーム防止（iOSの自動ズーム防止） */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* 小さいテキストは例外 */
+  .text-xs {
+    font-size: 0.75rem; /* 12px */
+  }
+
+  .text-sm {
+    font-size: 0.875rem; /* 14px */
+  }
+}
+
+/* タッチデバイス向けホバー無効化 */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:shadow-lg:hover {
+    box-shadow: var(--shadow-soft, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+  }
+
+  /* カードのホバーエフェクトを軽減 */
+  .hover\:shadow-lg {
+    transition: box-shadow 0.2s ease;
+  }
+}
+
+/* touch-manipulation クラス追加（遅延なしタップ） */
+.touch-manipulation {
+  touch-action: manipulation;
+}
