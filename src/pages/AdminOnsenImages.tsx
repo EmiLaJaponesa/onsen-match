@@ -2,14 +2,16 @@ import { useOnsenTypeConfig } from '@/hooks/useOnsenTypeConfig';
 import { OnsenImageUploadCard } from '@/components/admin/OnsenImageUploadCard';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { ArrowLeft, RefreshCw, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function AdminOnsenImages() {
   const { data: onsenTypes, isLoading } = useOnsenTypeConfig();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { signOut, user } = useAuth();
 
   const handleUploadSuccess = () => {
     // React Queryのキャッシュをクリアして再取得
@@ -20,31 +22,52 @@ export default function AdminOnsenImages() {
     queryClient.invalidateQueries({ queryKey: ['onsen-type-config'] });
   };
 
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/admin/login');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* ヘッダー */}
         <div className="mb-8 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate('/')}
-              className="gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              トップページに戻る
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/')}
+                className="gap-2"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                トップページに戻る
+              </Button>
+            </div>
             
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleRefresh}
-              className="gap-2"
-            >
-              <RefreshCw className="h-4 w-4" />
-              更新
-            </Button>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground hidden sm:inline">
+                {user?.email}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefresh}
+                className="gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                <span className="hidden sm:inline">更新</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="hidden sm:inline">ログアウト</span>
+              </Button>
+            </div>
           </div>
 
           <div>

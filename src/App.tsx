@@ -13,6 +13,7 @@ const Index = lazy(() => import("./pages/Index"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const Result = lazy(() => import("./pages/Result"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminOnsenImages = lazy(() => import("./pages/AdminOnsenImages"));
 
 // Loading spinner component
@@ -69,7 +70,8 @@ const App = () => {
                 <Route path="/result/:type" element={<Result />} />
                 {/* Redirect legacy alkaline route to yodo */}
                 <Route path="/result/alkaline" element={<Navigate to="/result/yodo" replace />} />
-                {/* Admin route */}
+                {/* Admin routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
                 <Route 
                   path="/admin/onsen-images" 
                   element={

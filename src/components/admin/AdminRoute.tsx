@@ -1,17 +1,35 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { Loader2 } from 'lucide-react';
 
 interface AdminRouteProps {
   children: ReactNode;
+  requireAdmin?: boolean;
 }
 
-export const AdminRoute = ({ children }: AdminRouteProps) => {
-  // 現時点では認証チェックなし（将来の拡張用）
-  // TODO: Supabase Authを導入した際に、ここで認証チェックを実装
-  
-  // 開発環境でのアクセス警告
-  if (import.meta.env.DEV) {
-    console.warn('⚠️ Admin route accessed without authentication');
+export const AdminRoute = ({ children, requireAdmin = false }: AdminRouteProps) => {
+  const { user, role, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/admin/login');
+    } else if (!loading && requireAdmin && role !== 'admin') {
+      navigate('/');
+    }
+  }, [user, role, loading, navigate, requireAdmin]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
   }
+
+  if (!user) return null;
+  if (requireAdmin && role !== 'admin') return null;
 
   return <>{children}</>;
 };
