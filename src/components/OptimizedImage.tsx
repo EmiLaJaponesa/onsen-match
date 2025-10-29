@@ -20,16 +20,34 @@ export const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('');
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
+    setIsLoaded(false);
+    setError(false);
+    
     if (priority) {
       setImageSrc(src);
     } else {
       const img = new Image();
       img.src = src;
       img.onload = () => setImageSrc(src);
+      img.onerror = () => {
+        // 3回まで再試行（キャッシュバスティング付き）
+        if (retryCount < 3) {
+          setTimeout(() => {
+            const cacheBustedSrc = src.includes('?') 
+              ? `${src}&retry=${retryCount + 1}`
+              : `${src}?retry=${retryCount + 1}`;
+            setImageSrc(cacheBustedSrc);
+            setRetryCount(prev => prev + 1);
+          }, 1000 * (retryCount + 1));
+        } else {
+          setError(true);
+        }
+      };
     }
-  }, [src, priority]);
+  }, [src, priority, retryCount]);
 
   if (error) {
     return (

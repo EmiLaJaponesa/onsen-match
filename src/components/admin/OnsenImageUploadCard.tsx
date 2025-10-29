@@ -53,7 +53,11 @@ export const OnsenImageUploadCard = ({
         title: '✅ アップロード成功',
         description: `${title}の画像を更新しました`,
       });
-      onUploadSuccess();
+      
+      // 即座にプレビューを更新（キャッシュバスティング）
+      setTimeout(() => {
+        onUploadSuccess();
+      }, 500);
 
       // 3秒後にステータスをリセット
       setTimeout(() => setUploadStatus('idle'), 3000);

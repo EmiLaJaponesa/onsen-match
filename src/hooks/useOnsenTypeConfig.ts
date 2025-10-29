@@ -47,12 +47,15 @@ export const useOnsenTypeConfig = () => {
 
       if (error) throw error;
       
-      // フォールバック画像を使用（Supabase Storageが空の場合）
+      // Supabase画像を優先、失敗時のみフォールバック + キャッシュバスティング
       return data.map(item => ({
         ...item,
-        image_url: FALLBACK_IMAGES[item.type] || item.image_url
+        image_url: item.image_url 
+          ? `${item.image_url}?t=${new Date(item.updated_at).getTime()}`
+          : FALLBACK_IMAGES[item.type]
       })) as OnsenTypeConfig[];
     },
-    staleTime: 1000 * 60 * 10, // 10分キャッシュ
+    staleTime: 1000 * 30, // 30秒キャッシュ
+    gcTime: 1000 * 60 * 5, // 5分後にガベージコレクション
   });
 };
