@@ -50,6 +50,7 @@ export const OnsenTypesPreview = () => {
                   alt={onsenType.title}
                   className="w-full h-full object-cover"
                   priority={index < 4}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
                   width={300}
                   height={300}
                 />

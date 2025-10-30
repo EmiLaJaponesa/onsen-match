@@ -55,9 +55,10 @@ export const useOnsenTypeConfig = () => {
           : FALLBACK_IMAGES[item.type]
       })) as OnsenTypeConfig[];
     },
-    staleTime: 1000 * 60 * 5, // 5分キャッシュ
-    gcTime: 1000 * 60 * 10, // 10分後にガベージコレクション
+    staleTime: Infinity, // 画像URLは更新頻度が低いため無期限キャッシュ
+    gcTime: 1000 * 60 * 30, // 30分後にガベージコレクション
     refetchOnWindowFocus: false, // ウィンドウフォーカス時の再取得を無効化
     refetchOnMount: false, // マウント時の再取得を無効化
+    refetchOnReconnect: false, // 再接続時の再取得も無効化
   });
 };

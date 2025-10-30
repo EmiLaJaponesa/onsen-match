@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -19,45 +19,11 @@ export const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [imageSrc, setImageSrc] = useState<string>('');
-  const retryCountRef = useRef(0);
 
   useEffect(() => {
     setIsLoaded(false);
     setError(false);
-    retryCountRef.current = 0;
-    
-    const loadImage = () => {
-      const img = new Image();
-      const cacheBustedSrc = src.includes('?') 
-        ? `${src}&t=${Date.now()}`
-        : `${src}?t=${Date.now()}`;
-      img.src = cacheBustedSrc;
-      
-      img.onload = () => {
-        setImageSrc(cacheBustedSrc);
-        setIsLoaded(true);
-      };
-      
-      img.onerror = () => {
-        if (retryCountRef.current < 3) {
-          retryCountRef.current += 1;
-          setTimeout(() => {
-            loadImage();
-          }, 1000 * retryCountRef.current);
-        } else {
-          setError(true);
-        }
-      };
-    };
-
-    if (priority) {
-      setImageSrc(src);
-      setIsLoaded(true);
-    } else {
-      loadImage();
-    }
-  }, [src, priority]);
+  }, [src]);
 
   if (error) {
     return (
@@ -71,7 +37,7 @@ export const OptimizedImage = ({
 
   return (
     <img 
-      src={imageSrc}
+      src={src}
       alt={alt}
       sizes={sizes}
       loading={priority ? "eager" : "lazy"}

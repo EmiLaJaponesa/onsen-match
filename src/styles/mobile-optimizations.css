@@ -1,9 +1,19 @@
 /* モバイルタッチ最適化 */
 @media (max-width: 768px) {
-  /* タップ領域の拡大 */
-  button, a, input[type="file"], label[for] {
+  /* タップ領域の拡大（ラジオボタンは除外） */
+  button:not(.radio-button), 
+  a:not(.radio-button), 
+  input[type="file"], 
+  label[for]:not(.radio-label) {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* ラジオボタンは例外 */
+  input[type="radio"],
+  .radio-button {
+    min-height: unset !important;
+    min-width: unset !important;
   }
 
   /* スクロールの慣性（iOS向け） */

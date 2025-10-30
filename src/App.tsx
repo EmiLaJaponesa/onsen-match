@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { trackUTMParams, trackScrollDepth, trackPageView } from "./utils/analytics";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AdminRoute } from "./components/admin/AdminRoute";
+import { useMobileOptimizations } from "./hooks/useMobileOptimizations";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -36,6 +37,8 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  useMobileOptimizations();
+  
   useEffect(() => {
     // Track UTM parameters on first load
     trackUTMParams();
