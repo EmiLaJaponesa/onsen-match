@@ -1,5 +1,6 @@
 import { CardTitle, CardDescription } from '@/components/ui/card';
 import { Sparkles } from 'lucide-react';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 interface ResultHeroProps {
   image: string;
@@ -11,12 +12,11 @@ export const ResultHero = ({ image, title, japaneseTitle }: ResultHeroProps) => 
   return (
     <>
       <div className="relative h-64 md:h-80 overflow-hidden">
-        <img 
-          src={image} 
+        <OptimizedImage
+          src={image}
           alt={title}
           className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
+          priority={true}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90" />
       </div>

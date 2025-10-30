@@ -14,8 +14,7 @@ export default function AdminOnsenImages() {
   const { signOut, user } = useAuth();
 
   const handleUploadSuccess = () => {
-    // React Queryのキャッシュを完全削除して即座に再取得
-    queryClient.invalidateQueries({ queryKey: ['onsen-type-config'] });
+    // キャッシュを削除して即座に再取得
     queryClient.removeQueries({ queryKey: ['onsen-type-config'] });
     queryClient.refetchQueries({ queryKey: ['onsen-type-config'] });
   };

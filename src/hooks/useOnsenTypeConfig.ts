@@ -55,7 +55,9 @@ export const useOnsenTypeConfig = () => {
           : FALLBACK_IMAGES[item.type]
       })) as OnsenTypeConfig[];
     },
-    staleTime: 1000 * 30, // 30秒キャッシュ
-    gcTime: 1000 * 60 * 5, // 5分後にガベージコレクション
+    staleTime: 1000 * 60 * 5, // 5分キャッシュ
+    gcTime: 1000 * 60 * 10, // 10分後にガベージコレクション
+    refetchOnWindowFocus: false, // ウィンドウフォーカス時の再取得を無効化
+    refetchOnMount: false, // マウント時の再取得を無効化
   });
 };

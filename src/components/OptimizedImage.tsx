@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -20,34 +20,44 @@ export const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('');
-  const [retryCount, setRetryCount] = useState(0);
+  const retryCountRef = useRef(0);
 
   useEffect(() => {
     setIsLoaded(false);
     setError(false);
+    retryCountRef.current = 0;
     
-    if (priority) {
-      setImageSrc(src);
-    } else {
+    const loadImage = () => {
       const img = new Image();
-      img.src = src;
-      img.onload = () => setImageSrc(src);
+      const cacheBustedSrc = src.includes('?') 
+        ? `${src}&t=${Date.now()}`
+        : `${src}?t=${Date.now()}`;
+      img.src = cacheBustedSrc;
+      
+      img.onload = () => {
+        setImageSrc(cacheBustedSrc);
+        setIsLoaded(true);
+      };
+      
       img.onerror = () => {
-        // 3回まで再試行（キャッシュバスティング付き）
-        if (retryCount < 3) {
+        if (retryCountRef.current < 3) {
+          retryCountRef.current += 1;
           setTimeout(() => {
-            const cacheBustedSrc = src.includes('?') 
-              ? `${src}&retry=${retryCount + 1}`
-              : `${src}?retry=${retryCount + 1}`;
-            setImageSrc(cacheBustedSrc);
-            setRetryCount(prev => prev + 1);
-          }, 1000 * (retryCount + 1));
+            loadImage();
+          }, 1000 * retryCountRef.current);
         } else {
           setError(true);
         }
       };
+    };
+
+    if (priority) {
+      setImageSrc(src);
+      setIsLoaded(true);
+    } else {
+      loadImage();
     }
-  }, [src, priority, retryCount]);
+  }, [src, priority]);
 
   if (error) {
     return (
