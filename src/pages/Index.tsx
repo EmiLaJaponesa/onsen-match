@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import onsenHero from "@/assets/onsen-hero-new.jpg";
-import { ServiceFeaturesSection } from "@/components/hero/ServiceFeaturesSection";
 import { OnsenStatsSection } from "@/components/hero/OnsenStatsSection";
-import { OnsenTypesPreview } from "@/components/hero/OnsenTypesPreview";
-import { FAQSection } from "@/components/result/FAQSection";
-import { FinalCTASection } from "@/components/hero/FinalCTASection";
+import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
 import { Footer } from "@/components/layout/Footer";
+
+// Lazy load heavy sections for better initial load performance
+const ServiceFeaturesSection = lazy(() => import("@/components/hero/ServiceFeaturesSection").then(m => ({ default: m.ServiceFeaturesSection })));
+const OnsenTypesPreview = lazy(() => import("@/components/hero/OnsenTypesPreview").then(m => ({ default: m.OnsenTypesPreview })));
+const FAQSection = lazy(() => import("@/components/result/FAQSection").then(m => ({ default: m.FAQSection })));
+const FinalCTASection = lazy(() => import("@/components/hero/FinalCTASection").then(m => ({ default: m.FinalCTASection })));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -63,24 +67,56 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Onsen Stats Section */}
+      {/* Onsen Stats Section - Load immediately */}
       <OnsenStatsSection />
 
-      {/* Service Features Section */}
-      <ServiceFeaturesSection />
-
-      {/* Onsen Types Preview Section */}
-      <OnsenTypesPreview />
-
-      {/* FAQ Section */}
-      <div className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <FAQSection />
+      {/* Service Features Section - Lazy loaded */}
+      <Suspense fallback={
+        <div className="py-16 md:py-24 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <SectionSkeleton lines={4} />
+          </div>
         </div>
-      </div>
+      }>
+        <ServiceFeaturesSection />
+      </Suspense>
 
-      {/* Final CTA Section */}
-      <FinalCTASection />
+      {/* Onsen Types Preview Section - Lazy loaded */}
+      <Suspense fallback={
+        <div className="py-16 md:py-24">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <SectionSkeleton lines={5} />
+          </div>
+        </div>
+      }>
+        <OnsenTypesPreview />
+      </Suspense>
+
+      {/* FAQ Section - Lazy loaded */}
+      <Suspense fallback={
+        <div className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <SectionSkeleton lines={6} />
+          </div>
+        </div>
+      }>
+        <div className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <FAQSection />
+          </div>
+        </div>
+      </Suspense>
+
+      {/* Final CTA Section - Lazy loaded */}
+      <Suspense fallback={
+        <div className="py-16 md:py-24 bg-primary/5">
+          <div className="container mx-auto px-4">
+            <SectionSkeleton lines={3} />
+          </div>
+        </div>
+      }>
+        <FinalCTASection />
+      </Suspense>
 
       {/* Footer */}
       <Footer />

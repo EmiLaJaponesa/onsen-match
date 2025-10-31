@@ -307,6 +307,16 @@ All colors MUST be HSL.
   }
 }
 
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Performance: GPU acceleration hints */
 .animate-fade-in,
 .hover-scale,
