@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import onsenHero from "@/assets/onsen-hero-new.jpg";
 import { OnsenStatsSection } from "@/components/hero/OnsenStatsSection";
 import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
@@ -14,21 +14,38 @@ const FinalCTASection = lazy(() => import("@/components/hero/FinalCTASection").t
 
 const Index = () => {
   const navigate = useNavigate();
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
+  // Tiny 20x12 base64 placeholder (1KB) for instant FCP
+  const heroPlaceholder = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAcI/8QAJBAAAgEEAQQCAwAAAAAAAAAAAQIDBAUGBxEAEiExCBMUQVH/xAAVAQEBAAAAAAAAAAAAAAAAAAAGCP/EAB4RAAIBBAMBAAAAAAAAAAAAAAECAwAEBRExEhOB/9oADAMBAAIRAxEAPwBm5B5T5O5Kv9cvWQ3+puVQyh3aRlWPY2I1vtP1g8nqQCQCSo2dVbkrmvPt0vHf9eYrr7WIqYQxokiHwrKRsHb3kz5p/HvKmLZ5c73Z7bI9uvchM6dDq0U/ftXo/Igb0R/sav8Ay17blyaXyzaanJpKpF3cAXuAn7IqggE/bO3gDXPXGlsXbFKgBPv33q//2Q==";
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        {/* Hero Background with Enhanced Overlay */}
+        {/* Hero Background with Enhanced Overlay and LQIP */}
         <div className="absolute inset-0">
+          {/* Low-quality placeholder for instant FCP */}
+          {!heroLoaded && (
+            <img
+              src={heroPlaceholder}
+              alt=""
+              className="w-full h-full object-cover blur-xl scale-110"
+              aria-hidden="true"
+            />
+          )}
+          {/* Main hero image */}
           <img
             src={onsenHero}
             alt="Japanese Onsen"
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover transition-opacity duration-500 ${
+              heroLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             fetchPriority="high"
             decoding="async"
             width="1920"
             height="1080"
+            onLoad={() => setHeroLoaded(true)}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </div>
