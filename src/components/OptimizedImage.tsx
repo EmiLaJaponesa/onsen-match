@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import * as React from 'react';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -15,15 +16,38 @@ export const OptimizedImage = ({
   priority = false,
   fallbackIcon = "♨️",
   className = "",
+  width,
+  height,
   ...props 
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
+  // Optimize Supabase Storage images with transformations
+  const optimizedSrc = React.useMemo(() => {
+    if (src.includes('supabase.co/storage')) {
+      const url = new URL(src);
+      // Remove existing query params except 't' (cache busting)
+      const tParam = url.searchParams.get('t');
+      url.search = '';
+      if (tParam) url.searchParams.set('t', tParam);
+      
+      // Add image transformations for better performance
+      url.searchParams.set('width', width?.toString() || '400');
+      url.searchParams.set('height', height?.toString() || '400');
+      url.searchParams.set('resize', 'cover');
+      url.searchParams.set('format', 'webp');
+      url.searchParams.set('quality', '85');
+      
+      return url.toString();
+    }
+    return src;
+  }, [src, width, height]);
+
   useEffect(() => {
     setIsLoaded(false);
     setError(false);
-  }, [src]);
+  }, [optimizedSrc]);
 
   if (error) {
     return (
@@ -37,7 +61,7 @@ export const OptimizedImage = ({
 
   return (
     <img 
-      src={src}
+      src={optimizedSrc}
       alt={alt}
       sizes={sizes}
       loading={priority ? "eager" : "lazy"}
@@ -47,6 +71,8 @@ export const OptimizedImage = ({
       className={`${className} transition-opacity duration-300 ${
         isLoaded ? 'opacity-100' : 'opacity-0'
       }`}
+      width={width}
+      height={height}
       {...props}
     />
   );
