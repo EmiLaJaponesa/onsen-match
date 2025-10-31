@@ -44,7 +44,9 @@ export const useOnsenDiagnosis = (currentType: OnsenType | undefined) => {
           });
         }
       } catch (error) {
-        console.error('Failed to fetch diagnosis data:', error);
+        if (import.meta.env.DEV) {
+          console.error('Failed to fetch diagnosis data:', error);
+        }
       } finally {
         setIsLoading(false);
       }

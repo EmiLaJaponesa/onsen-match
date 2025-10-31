@@ -9,6 +9,11 @@ interface UploadResult {
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const MIN_IMAGE_DIMENSION = 400; // 最小400x400px
+const VALID_ONSEN_TYPES = [
+  'simple', 'chloride', 'carbonated', 'bicarbonate',
+  'sulfate', 'sulfur', 'acidic', 'ferruginous', 
+  'radon', 'yodo'
+] as const;
 
 interface ValidationResult {
   valid: boolean;
@@ -76,6 +81,11 @@ export const uploadOnsenImage = async (
   onsenType: string
 ): Promise<UploadResult> => {
   try {
+    // Validate onsen type against whitelist
+    if (!VALID_ONSEN_TYPES.includes(onsenType as any)) {
+      return { success: false, error: '無効な温泉タイプです' };
+    }
+
     // 強化されたバリデーション
     const validation = await validateImageFile(file);
     if (!validation.valid) {
@@ -96,7 +106,9 @@ export const uploadOnsenImage = async (
       });
 
     if (uploadError) {
-      console.error('Upload error:', uploadError);
+      if (import.meta.env.DEV) {
+        console.error('Upload error:', uploadError);
+      }
       return { success: false, error: 'アップロードに失敗しました' };
     }
 
@@ -115,13 +127,17 @@ export const uploadOnsenImage = async (
       .eq('type', onsenType);
 
     if (updateError) {
-      console.error('DB update error:', updateError);
+      if (import.meta.env.DEV) {
+        console.error('DB update error:', updateError);
+      }
       return { success: false, error: 'データベース更新に失敗しました' };
     }
 
     return { success: true, imageUrl: publicUrl };
   } catch (error) {
-    console.error('Unexpected error:', error);
+    if (import.meta.env.DEV) {
+      console.error('Unexpected error:', error);
+    }
     return { success: false, error: '予期しないエラーが発生しました' };
   }
 };
