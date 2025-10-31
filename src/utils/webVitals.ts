@@ -1,3 +1,4 @@
+// Web Vitals monitoring for performance tracking
 import { onCLS, onFCP, onLCP, onTTFB, onINP, type Metric } from 'web-vitals';
 
 interface WebVitalMetric {
