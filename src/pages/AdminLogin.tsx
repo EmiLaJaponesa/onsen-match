@@ -6,6 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Lock } from 'lucide-react';
+import { z } from 'zod';
+
+const loginSchema = z.object({
+  email: z.string().trim().email('有効なメールアドレスを入力してください').max(255, 'メールアドレスは255文字以内で入力してください'),
+  password: z.string().min(8, 'パスワードは8文字以上で入力してください').max(128, 'パスワードは128文字以内で入力してください')
+});
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -17,9 +23,23 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate input before API call
+    const validation = loginSchema.safeParse({ email, password });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: '入力エラー',
+        description: firstError.message,
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
 
-    const { error } = await signIn(email, password);
+    const { error } = await signIn(validation.data.email, validation.data.password);
 
     if (error) {
       toast({

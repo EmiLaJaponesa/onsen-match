@@ -1,5 +1,5 @@
-import { ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Loader2 } from 'lucide-react';
 
@@ -10,15 +10,6 @@ interface AdminRouteProps {
 
 export const AdminRoute = ({ children, requireAdmin = false }: AdminRouteProps) => {
   const { user, role, loading } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate('/admin/login');
-    } else if (!loading && requireAdmin && role !== 'admin') {
-      navigate('/');
-    }
-  }, [user, role, loading, navigate, requireAdmin]);
 
   if (loading) {
     return (
@@ -28,8 +19,13 @@ export const AdminRoute = ({ children, requireAdmin = false }: AdminRouteProps) 
     );
   }
 
-  if (!user) return null;
-  if (requireAdmin && role !== 'admin') return null;
+  if (!user) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  if (requireAdmin && role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
 
   return <>{children}</>;
 };
