@@ -35,6 +35,10 @@ export default defineConfig(({ mode }) => ({
     // Optimized code splitting
     rollupOptions: {
       output: {
+        // Add cache-busting hashes
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
         manualChunks: {
           // React core libraries
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
