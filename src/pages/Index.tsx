@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { lazy, Suspense, useState } from "react";
-import onsenHero from "@/assets/onsen-hero-new.webp";
+import onsenHero from "@/assets/onsen-hero-new.jpg";
 import { OnsenStatsSection } from "@/components/hero/OnsenStatsSection";
 import { SectionSkeleton } from "@/components/ui/SectionSkeleton";
 import { Footer } from "@/components/layout/Footer";
