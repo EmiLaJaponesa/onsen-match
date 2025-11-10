@@ -1,3 +1,20 @@
+/* Mobile-First Optimizations */
+
+/* Touch device optimizations */
+.touch-device {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Enhanced touch feedback for interactive elements */
+.touch-device [class*="Card"]:active,
+.touch-device [class*="Button"]:active,
+.touch-device button:active,
+.touch-device a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease-out;
+}
+
 /* モバイルタッチ最適化 */
 @media (max-width: 768px) {
   /* タップ領域の拡大（ラジオボタンは除外） */

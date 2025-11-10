@@ -65,8 +65,6 @@ export const useQuizState = () => {
         newAnswers, 
         timeSpent,
         {
-          alternativeType: diagnosis.alternativeType,
-          alternativeScore: diagnosis.alternativeScore,
           confidence: diagnosis.confidence,
           allScores: diagnosis.allScores,
         }

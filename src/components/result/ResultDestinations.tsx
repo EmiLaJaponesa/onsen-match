@@ -51,6 +51,7 @@ export const ResultDestinations = ({ destinations }: ResultDestinationsProps) =>
                   kanji={destination.kanji}
                   location={destination.location}
                   description={destination.description}
+                  url={destination.url}
                 />
               </div>
             ))}
@@ -85,6 +86,7 @@ export const ResultDestinations = ({ destinations }: ResultDestinationsProps) =>
             kanji={destination.kanji}
             location={destination.location}
             description={destination.description}
+            url={destination.url}
           />
         ))}
       </div>

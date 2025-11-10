@@ -29,6 +29,7 @@ export interface OnsenDestination {
   kanji: string;
   location: string;
   description: string;
+  url?: string;
 }
 
 export interface OnsenResult {

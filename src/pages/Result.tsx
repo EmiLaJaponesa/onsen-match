@@ -1,10 +1,9 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { OnsenType } from '@/types/onsen';
 import { useOnsenResult } from '@/hooks/useOnsenResult';
-import { useOnsenDiagnosis } from '@/hooks/useOnsenDiagnosis';
 import { normalizeOnsenType } from '@/utils/onsenTypeMapper';
 import { ScrollProgress } from '@/components/result/ScrollProgress';
 import { ShareButton } from '@/components/result/ShareButton';
@@ -13,22 +12,20 @@ import { ResultDescription } from '@/components/result/ResultDescription';
 import { ResultCharacteristics } from '@/components/result/ResultCharacteristics';
 import { ResultDestinations } from '@/components/result/ResultDestinations';
 import { ResultCTA } from '@/components/result/ResultCTA';
-import { FAQSection } from '@/components/result/FAQSection';
 import { Footer } from '@/components/layout/Footer';
-import { RelatedTypesSection } from '@/components/result/RelatedTypesSection';
-import { ConfidenceBadge } from '@/components/result/ConfidenceBadge';
-import { AlternativeType } from '@/components/result/AlternativeType';
 import { EXTERNAL_LINKS } from '@/constants/app';
-import { onsenResults } from '@/data/onsenTypes';
 import { ResultCard } from '@/components/layout/ResultCard';
 import { Container } from '@/components/layout/Container';
+import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
+
+const RelatedTypesSection = lazy(() => import('@/components/result/RelatedTypesSection').then(m => ({ default: m.RelatedTypesSection })));
+const FAQSection = lazy(() => import('@/components/result/FAQSection').then(m => ({ default: m.FAQSection })));
 
 const Result = () => {
   const { type: rawType } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const type = normalizeOnsenType(rawType) as OnsenType;
   const { result, image } = useOnsenResult(type);
-  const { confidence, alternativeType, alternativeScore, isLoading } = useOnsenDiagnosis(type);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -58,16 +55,6 @@ const Result = () => {
             japaneseTitle={result.japaneseTitle}
           />
 
-          {/* Confidence Badge */}
-          {!isLoading && confidence && (
-            <div className="flex justify-center animate-fade-in">
-              <ConfidenceBadge 
-                level={confidence} 
-                score={confidence === 'high' ? 85 : confidence === 'medium' ? 67 : 55} 
-              />
-            </div>
-          )}
-
           <ResultDescription description={result.description} />
           
           <ResultCharacteristics 
@@ -77,19 +64,16 @@ const Result = () => {
             experience={result.experience}
           />
 
-          {/* Alternative Type */}
-          {!isLoading && alternativeType && alternativeScore && (
-            <AlternativeType 
-              type={alternativeType}
-              score={alternativeScore}
-              result={onsenResults[alternativeType]}
-            />
-          )}
-
           <ResultDestinations destinations={result.destinations} />
           <ResultCTA onsenType={result.title.split(' – ')[0]} />
-          <RelatedTypesSection currentType={result.type} />
-          <FAQSection />
+          
+          <Suspense fallback={<SectionSkeleton />}>
+            <RelatedTypesSection currentType={result.type} />
+          </Suspense>
+          
+          <Suspense fallback={<SectionSkeleton />}>
+            <FAQSection />
+          </Suspense>
 
           <div className="text-center pt-6">
             <Link to="/" className="inline-block">
