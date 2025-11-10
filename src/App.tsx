@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { trackUTMParams, trackScrollDepth, trackPageView } from "./utils/analytics";
+import { trackUTMParams, trackScrollDepth, trackPageView } from "./utils/lazyAnalytics";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AdminRoute } from "./components/admin/AdminRoute";
 import { useMobileOptimizations } from "./hooks/useMobileOptimizations";
@@ -40,17 +40,26 @@ const App = () => {
   useMobileOptimizations();
   
   useEffect(() => {
-    // Track UTM parameters on first load
-    trackUTMParams();
+    let cleanupScroll: (() => void) | undefined;
     
-    // Track initial page view
-    trackPageView();
+    // Track analytics asynchronously to defer Supabase loading
+    const initAnalytics = async () => {
+      // Track UTM parameters on first load
+      await trackUTMParams();
+      
+      // Track initial page view
+      await trackPageView();
+      
+      // Set up scroll depth tracking
+      cleanupScroll = await trackScrollDepth();
+    };
     
-    // Set up scroll depth tracking
-    const cleanupScroll = trackScrollDepth();
+    initAnalytics();
     
     return () => {
-      cleanupScroll();
+      if (cleanupScroll) {
+        cleanupScroll();
+      }
     };
   }, []);
 
