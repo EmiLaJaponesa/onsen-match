@@ -325,6 +325,23 @@ All colors MUST be HSL.
   will-change: opacity, transform;
 }
 
+/* Performance: CSS containment to reduce reflow scope */
+main {
+  contain: layout style paint;
+}
+
+section {
+  contain: layout style;
+  content-visibility: auto;
+}
+
+/* Optimize card components to prevent layout thrashing */
+.card,
+[class*="Card"],
+[data-radix-popper-content-wrapper] {
+  contain: layout style;
+}
+
 /* Improved focus visibility for accessibility */
 *:focus-visible {
   outline: 2px solid hsl(var(--primary));
