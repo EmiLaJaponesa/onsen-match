@@ -33,15 +33,11 @@ export const OptimizedImage = ({
       if (tParam) url.searchParams.set('t', tParam);
       
       // Add image transformations for better performance
-      // Use smaller default dimensions and higher compression for faster loading
-      const targetWidth = width?.toString() || '200';
-      const targetHeight = height?.toString() || '200';
-      
-      url.searchParams.set('width', targetWidth);
-      url.searchParams.set('height', targetHeight);
+      url.searchParams.set('width', width?.toString() || '400');
+      url.searchParams.set('height', height?.toString() || '400');
       url.searchParams.set('resize', 'cover');
       url.searchParams.set('format', 'webp');
-      url.searchParams.set('quality', '70'); // Reduced from 85 to 70 for smaller file size
+      url.searchParams.set('quality', '85');
       
       return url.toString();
     }

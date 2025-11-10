@@ -34,22 +34,19 @@ const Index = () => {
               aria-hidden="true"
             />
           )}
-          {/* Main hero image with WebP optimization */}
-          <picture>
-            <source srcSet={onsenHero} type="image/webp" />
-            <img
-              src={onsenHero}
-              alt="Japanese Onsen"
-              className={`w-full h-full object-cover transition-opacity duration-500 ${
-                heroLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              fetchPriority="high"
-              decoding="async"
-              width="1920"
-              height="1080"
-              onLoad={() => setHeroLoaded(true)}
-            />
-          </picture>
+          {/* Main hero image */}
+          <img
+            src={onsenHero}
+            alt="Japanese Onsen"
+            className={`w-full h-full object-cover transition-opacity duration-500 ${
+              heroLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            fetchPriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+            onLoad={() => setHeroLoaded(true)}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </div>
 

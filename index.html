@@ -3,14 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ONSEN MATCH - Tu guía de aguas termales en Japón</title>
-    
-    <!-- Inline critical CSS for instant FCP with system fonts -->
-    <style>
-      body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;font-weight:400;line-height:1.7;color:#2d3748;background:#fff}
-      h1,h2,h3,h4,h5,h6{font-family:Georgia,"Times New Roman",Times,serif;font-weight:600;line-height:1.3}
-      *{box-sizing:border-box}
-    </style>
+    <title>Onsen Match - Sommelier digital de aguas termales en Japón</title>
     
     <!-- Preconnect to critical origins for faster connections -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,27 +13,15 @@
     <!-- Preload critical resources for faster FCP -->
     <link rel="preload" as="image" href="/src/assets/onsen-hero-new.webp" fetchpriority="high" type="image/webp">
     
-    <!-- Load fonts completely asynchronously to eliminate render blocking -->
+    <!-- Inline font loading script for non-blocking fonts -->
     <script>
-      // Defer font loading until after initial render
-      if (window.requestIdleCallback) {
-        requestIdleCallback(function() {
-          var link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap';
-          document.head.appendChild(link);
-        });
-      } else {
-        setTimeout(function() {
-          var link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap';
-          document.head.appendChild(link);
-        }, 1);
-      }
+      !function(e){"use strict";var t=function(t,n,o){var r,a=e.document,i=a.createElement("link");if(n)r=n;else{var d=(a.body||a.getElementsByTagName("head")[0]).childNodes;r=d[d.length-1]}var l=a.styleSheets;i.rel="stylesheet",i.href=t,i.media="only x",function e(t){if(a.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(i,n?r:r.nextSibling)});var s=function(e){for(var t=i.href,n=l.length;n--;)if(l[n].href===t)return e();setTimeout(function(){s(e)})};return i.addEventListener&&i.addEventListener("load",o),i.onloadcssdefined=s,s(o),i};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
     </script>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet"></noscript>
-    <meta name="description" content="¿Vas a Japón? Descubre tu onsen ideal y el destino termal perfecto para disfrutar al máximo tu viaje.">
+    
+    <!-- Load fonts asynchronously to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Serif+JP:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet"></noscript>
+    <meta name="description" content="Descubre el tipo de onsen japonés que te hace sentir bien. Encuentra tu próximo destino en Japón para reconectar con tu bienestar.">
     <meta name="author" content="Onsen Match" />
 
     
@@ -68,18 +49,10 @@
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:title" content="ONSEN MATCH - Tu guía de aguas termales en Japón">
-  <meta name="twitter:title" content="ONSEN MATCH - Tu guía de aguas termales en Japón">
-  <meta property="og:description" content="¿Vas a Japón? Descubre tu onsen ideal y el destino termal perfecto para disfrutar al máximo tu viaje.">
-  <meta name="twitter:description" content="¿Vas a Japón? Descubre tu onsen ideal y el destino termal perfecto para disfrutar al máximo tu viaje.">
+  <meta property="og:title" content="Onsen Match - Sommelier digital de aguas termales en Japón">
+  <meta name="twitter:title" content="Onsen Match - Sommelier digital de aguas termales en Japón">
+  <meta property="og:description" content="Descubre el tipo de onsen japonés que te hace sentir bien. Encuentra tu próximo destino en Japón para reconectar con tu bienestar.">
+  <meta name="twitter:description" content="Descubre el tipo de onsen japonés que te hace sentir bien. Encuentra tu próximo destino en Japón para reconectar con tu bienestar.">
 </head>
 
   <body>
