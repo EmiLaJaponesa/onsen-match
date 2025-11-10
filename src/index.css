@@ -318,14 +318,12 @@ All colors MUST be HSL.
   }
 }
 
-/* Performance: GPU acceleration hints */
-.animate-fade-in,
-.hover-scale,
-.hover-lift {
+/* Performance: GPU acceleration hints - be selective */
+.animate-fade-in {
   will-change: opacity, transform;
 }
 
-/* Performance: CSS containment to reduce reflow scope */
+/* Performance: Enhanced CSS containment to reduce reflow scope */
 main {
   contain: layout style paint;
 }
@@ -335,11 +333,23 @@ section {
   content-visibility: auto;
 }
 
-/* Optimize card components to prevent layout thrashing */
+/* Strict containment for isolated components */
 .card,
-[class*="Card"],
-[data-radix-popper-content-wrapper] {
-  contain: layout style;
+[class*="Card"] {
+  contain: layout style paint;
+}
+
+/* Reduce reflow scope for UI components */
+[data-radix-popper-content-wrapper],
+[role="dialog"],
+[role="menu"] {
+  contain: layout style paint;
+}
+
+/* Contain carousel/slider components */
+[class*="embla"],
+[class*="carousel"] {
+  contain: layout;
 }
 
 /* Improved focus visibility for accessibility */
