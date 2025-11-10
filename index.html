@@ -20,8 +20,25 @@
     <!-- Preload critical resources for faster FCP -->
     <link rel="preload" as="image" href="/src/assets/onsen-hero-new.webp" fetchpriority="high" type="image/webp">
     
-    <!-- Load fonts asynchronously to avoid render blocking -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Load fonts completely asynchronously to eliminate render blocking -->
+    <script>
+      // Defer font loading until after initial render
+      if (window.requestIdleCallback) {
+        requestIdleCallback(function() {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap';
+          document.head.appendChild(link);
+        });
+      } else {
+        setTimeout(function() {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap';
+          document.head.appendChild(link);
+        }, 1);
+      }
+    </script>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet"></noscript>
     <meta name="description" content="Descubre el tipo de onsen japonés que te hace sentir bien. Encuentra tu próximo destino en Japón para reconectar con tu bienestar.">
     <meta name="author" content="Onsen Match" />
