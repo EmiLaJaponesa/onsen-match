@@ -23,26 +23,19 @@ export const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  // Optimize Supabase Storage images with transformations
+  // Optimize Supabase Storage images - keep cache busting only
   const optimizedSrc = React.useMemo(() => {
     if (src.includes('supabase.co/storage')) {
       const url = new URL(src);
-      // Remove existing query params except 't' (cache busting)
+      // Keep only cache busting parameter 't'
       const tParam = url.searchParams.get('t');
       url.search = '';
       if (tParam) url.searchParams.set('t', tParam);
       
-      // Add image transformations for better performance
-      url.searchParams.set('width', width?.toString() || '400');
-      url.searchParams.set('height', height?.toString() || '400');
-      url.searchParams.set('resize', 'cover');
-      url.searchParams.set('format', 'webp');
-      url.searchParams.set('quality', '85');
-      
       return url.toString();
     }
     return src;
-  }, [src, width, height]);
+  }, [src]);
 
   useEffect(() => {
     setIsLoaded(false);

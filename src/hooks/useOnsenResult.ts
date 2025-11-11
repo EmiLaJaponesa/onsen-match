@@ -11,6 +11,10 @@ export const useOnsenResult = (type: OnsenType | undefined) => {
     
     const imageConfig = onsenTypes?.find(t => t.type === type);
     
+    if (!imageConfig?.image_url && import.meta.env.DEV) {
+      console.warn(`画像URLが見つかりません: ${type}`);
+    }
+    
     return {
       result: onsenResults[type],
       image: imageConfig?.image_url || null
